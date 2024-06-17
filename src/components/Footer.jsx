@@ -1,4 +1,4 @@
-import * as React from "react";
+
 import { Box, Grid, Container, Typography, Button } from "@mui/material";
 
 function Footer() {
@@ -20,7 +20,7 @@ function Footer() {
   function generateFooterElements() {
     const footerElements = elements.map((column) => {
       return (
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={4} key="colum">
           <Box borderBottom={1}>
             <Button sx={{ color: "white", fontWeight: "bold" }}>
               {column.header}
@@ -28,7 +28,7 @@ function Footer() {
           </Box>
           {column.links.map((link) => {
             return (
-              <Box>
+              <Box key="colum">
                 <Button sx={{ color: "white" }}>{link}</Button>
               </Box>
             );

@@ -62,8 +62,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const pages = [
   "Encuentra Eventos",
   "Crear eventos",
-  "Iniciar sesion",
-  "Registrarse",
+  "SignIn / SignUp",
 ];
 const settings = [
   "Descubrir eventos",
