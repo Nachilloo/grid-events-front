@@ -18,9 +18,9 @@ function Footer() {
   ];
 
   function generateFooterElements() {
-    const footerElements = elements.map((column) => {
+    const footerElements = elements.map((column ) => {
       return (
-        <Grid item xs={12} md={4} key="colum">
+        <Grid item xs={12} md={4} >
           <Box borderBottom={1}>
             <Button sx={{ color: "white", fontWeight: "bold" }}>
               {column.header}
@@ -28,7 +28,7 @@ function Footer() {
           </Box>
           {column.links.map((link) => {
             return (
-              <Box key="colum">
+              <Box >
                 <Button sx={{ color: "white" }}>{link}</Button>
               </Box>
             );

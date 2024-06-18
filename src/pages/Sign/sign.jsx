@@ -2,7 +2,6 @@
 import SignInForm from "../../components/SignIn";
 import SignUpForm from "../../components/SignUp";
 import "./Sign.css";
-
 import { useState } from "react";
 
 export default function Sign() {

@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, redirect } from "react-router-dom";
 import Sign from "../pages/Sign/sign";
 import Home from "../pages/Home/Home";
 import Root from "../layout";
@@ -7,12 +7,13 @@ import About from "../pages/About/About";
 import Event from "../pages/Event/Event";
 import Profile from "../pages/Profile/Profile";
 import AllEvents from "../pages/AllEvents/AllEvents";
-
+import NotFound from "../pages/NotFound/NotFound";
 
 const router = createBrowserRouter([
   {
     path: "",
     element: <Root />,
+    errorElement: <NotFound />,
     children: [
       {
         path: "/",
@@ -20,6 +21,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/sign",
+        loader: () => {
+          if (localStorage.getItem("token")) {
+            return redirect("/profile");
+          } else {
+            return null;
+          }
+        },
         element: <Sign />,
       },
       {
@@ -40,6 +48,14 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
+        loader: () => {
+          if (!localStorage.getItem("token")) {
+            alert("inicia sesion");
+            return redirect("/sign");
+          } else {
+            return null;
+          }
+        },
         element: <Profile />,
       },
     ],

@@ -1,60 +1,61 @@
-import React from "react";
+import { useState } from "react";
+import { signUp } from "../services/authService";
+import { Navigate } from "react-router-dom";
+
 function SignUpForm() {
-  const [state, setState] = React.useState({
-    name: "",
-    email: "",
-    password: "",
-  });
-  const handleChange = (evt) => {
-    const value = evt.target.value;
-    setState({
-      ...state,
-      [evt.target.name]: value,
-    });
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleName = (event) => {
+    setName(event.target.value);
   };
 
-  const handleOnSubmit = (evt) => {
-    evt.preventDefault();
+  const handleEmail = (event) => {
+    setEmail(event.target.value);
+  };
+  const handlePassword = (event) => {
+    setPassword(event.target.value);
+  };
 
-    const { name, email, password } = state;
-    alert(
-      `You are sign up with name: ${name} email: ${email} and password: ${password}`
-    );
+  const handleOnSubmit = async () => {
+    const formData = {
+      name,
+      email,
+      password,
+    };
 
-    for (const key in state) {
-      setState({
-        ...state,
-        [key]: "",
-      });
-    }
+    const result = await signUp(formData);
+    Navigate("/profile");
+    console.log(result);
   };
 
   return (
     <div className="form-container sign-up-container">
       <form onSubmit={handleOnSubmit}>
-        <h1>Create Account</h1>
+        <h1>Crea una cuenta</h1>
         <input
           type="text"
           name="name"
-          value={state.name}
-          onChange={handleChange}
+          value={name}
+          onChange={handleName}
           placeholder="Name"
         />
         <input
           type="email"
           name="email"
-          value={state.email}
-          onChange={handleChange}
+          value={email}
+          onChange={handleEmail}
           placeholder="Email"
         />
         <input
           type="password"
           name="password"
-          value={state.password}
-          onChange={handleChange}
+          value={password}
+          onChange={handlePassword}
           placeholder="Password"
         />
-        <button>Sign Up</button>
+        <button onClick={handleOnSubmit}>Sign Up</button>
       </form>
     </div>
   );
