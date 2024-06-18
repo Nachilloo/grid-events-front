@@ -30,13 +30,11 @@ function Contact() {
         })
         navigate('/')
       }
-      
     }
     
-
   return (
     <section className="contact">
-      <form onSubmit={onSubmit}>
+      <form className="form" onSubmit={onSubmit}>
         <h2>Contáctanos</h2>
         <div className="input-box">
           <label> Nombre Completo </label>
@@ -50,7 +48,7 @@ function Contact() {
           <label> Mensaje </label>
           <textarea name="message" id="" className="field mess" placeholder ="Escribe tu mensaje" required ></textarea>
         </div>
-        <button type="submit"> Enviar mensaje </button>
+        <button className="button" type="submit"> Enviar mensaje </button>
 
       </form>
     </section>
