@@ -1,8 +1,9 @@
 import './Contact.css'
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom'
 
 function Contact() {
-
+  const navigate = useNavigate()
     const onSubmit = async (event) => {
       event.preventDefault();
       const formData = new FormData(event.target);
@@ -27,8 +28,11 @@ function Contact() {
           text: "Mensaje Enviado",
           icon: "success"
         })
+        navigate('/')
       }
+      
     }
+    
 
   return (
     <section className="contact">
