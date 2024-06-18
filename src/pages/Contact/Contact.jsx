@@ -35,7 +35,7 @@ function Contact() {
   return (
     <section className="contact">
       <form className="form" onSubmit={onSubmit}>
-        <h2>Contáctanos</h2>
+        <h2 className='contactName'>Contáctanos</h2>
         <div className="input-box">
           <label> Nombre Completo </label>
           <input type="text" className="field" placeholder="Escribe tu nombre" name='name' required/>
