@@ -27,7 +27,7 @@ function SignInForm() {
 
   return (
     <div className="form-container sign-in-container">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="formSign">
         <h1>Sign in</h1>
 
         <input
@@ -45,7 +45,9 @@ function SignInForm() {
           onChange={handlePassword}
         />
         <a href="#">Olvidastes tu contraseña?</a>
-        <button onClick={handleSubmit}>Sign In</button>
+        <button onClick={handleSubmit} className="button">
+          Sign In
+        </button>
       </form>
     </div>
   );

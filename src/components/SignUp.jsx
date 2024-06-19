@@ -32,7 +32,7 @@ function SignUpForm() {
 
   return (
     <div className="form-container sign-up-container">
-      <form onSubmit={handleOnSubmit}>
+      <form onSubmit={handleOnSubmit} className="formSign">
         <h1>Crea una cuenta</h1>
         <input
           type="text"
@@ -55,7 +55,9 @@ function SignUpForm() {
           onChange={handlePassword}
           placeholder="Password"
         />
-        <button onClick={handleOnSubmit}>Sign Up</button>
+        <button onClick={handleOnSubmit} className="button">
+          Sign Up
+        </button>
       </form>
     </div>
   );
