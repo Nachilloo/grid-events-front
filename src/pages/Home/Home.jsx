@@ -1,4 +1,3 @@
-import React from "react";
 import Carousel from "react-material-ui-carousel";
 import { Paper, Typography, Container, Grid, Avatar, Box } from "@mui/material";
 import CategoryHome from "../../components/CategoryHome";
