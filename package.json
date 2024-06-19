@@ -16,11 +16,13 @@
     "@mui/icons-material": "^5.15.20",
     "@mui/material": "^5.15.20",
     "@mui/x-data-grid": "^7.7.0",
+    "antd": "^5.18.2",
     "axios": "^1.7.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.52.0",
     "react-router-dom": "^6.23.1",
+    "react-material-ui-carousel": "^3.4.2",
     "sweetalert2": "^11.11.1"
   },
   "devDependencies": {

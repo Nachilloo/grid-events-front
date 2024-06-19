@@ -1,21 +1,34 @@
-import * as React from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
+import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
+import AccountCircle from "@mui/icons-material/AccountCircle";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
+import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
-import InputBase from "@mui/material/InputBase";
+import Button from "@mui/material/Button";
 import SearchIcon from "@mui/icons-material/Search";
-import { styled, alpha } from "@mui/material/styles";
+import InputBase from "@mui/material/InputBase";
+import Badge from "@mui/material/Badge";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import Drawer from "@mui/material/Drawer";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
+import HomeIcon from "@mui/icons-material/Home";
+import InfoIcon from "@mui/icons-material/Info";
+import ContactMailIcon from "@mui/icons-material/ContactMail";
+import SettingsIcon from "@mui/icons-material/Settings";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import { styled, alpha } from "@mui/material/styles";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import DescriptionIcon from "@mui/icons-material/Description";
+import LoginIcon from "@mui/icons-material/Login";
+import HowToRegIcon from "@mui/icons-material/HowToReg";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -24,10 +37,11 @@ const Search = styled("div")(({ theme }) => ({
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
+  marginRight: theme.spacing(2),
   marginLeft: 0,
   width: "100%",
   [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
+    marginLeft: theme.spacing(3),
     width: "auto",
   },
 }));
@@ -44,58 +58,53 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
-  width: "100%",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "20ch",
     },
   },
 }));
 
-const pages = [
-  "Encuentra Eventos",
-  "Crear eventos",
-  "SignIn / SignUp",
-];
-const settings = [
-  "Descubrir eventos",
-  "Gestionar mis eventos",
-  "Entradas",
-  "Me han gustado",
-  "Ajustes de la cuenta",
-  "Cerrar sesión",
-];
+const StyledDrawer = styled(Drawer)(({ theme }) => ({
+  "& .MuiDrawer-paper": {
+    width: 240,
+    backgroundColor: "#f4f4f4",
+  },
+}));
 
 function Header() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
+  const toggleDrawer = (open) => () => {
+    setDrawerOpen(open);
   };
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
+    <>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+            onClick={toggleDrawer(true)}
+          >
+            <MenuIcon />
+          </IconButton>
           <Avatar
             sx={{
               display: {
@@ -109,112 +118,38 @@ function Header() {
             alt="Remy Sharp"
             src="./src/assets/gridd.png"
           />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
+          <Typography variant="h6" sx={{ flexGrow: 1 }}>
             GridEvents
           </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Search>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ "aria-label": "search" }}
+            />
+          </Search>
+          <IconButton color="inherit">
+            <Badge badgeContent={4} color="error">
+              <NotificationsIcon style={{ width: "30px", height: "30px" }} />
+            </Badge>
+          </IconButton>
+          <div>
             <IconButton
-              size="large"
+              edge="end"
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
+              onClick={handleMenu}
               color="inherit"
+              style={{ width: "80px", height: "80px" }}
             >
-              <MenuIcon />
+              <AccountCircle style={{ width: "30px", height: "30px" }} />
             </IconButton>
             <Menu
               id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <Box>
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ "aria-label": "search" }}
-              />
-            </Search>
-          </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            LOGO
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="./src/assets/gridd.png" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
+              anchorEl={anchorEl}
               anchorOrigin={{
                 vertical: "top",
                 horizontal: "right",
@@ -224,21 +159,81 @@ function Header() {
                 vertical: "top",
                 horizontal: "right",
               }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
             >
-              <Divider />
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-              <Divider />
+              <MenuItem onClick={handleClose}>Perfil</MenuItem>
+              <MenuItem onClick={handleClose}>Cerrar sesion</MenuItem>
             </Menu>
-          </Box>
+          </div>
         </Toolbar>
-      </Container>
-    </AppBar>
+      </AppBar>
+      <StyledDrawer
+        anchor="left"
+        open={drawerOpen}
+        onClose={toggleDrawer(false)}
+      >
+        <List>
+          <ListItem button>
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <DescriptionIcon />
+            </ListItemIcon>
+            <ListItemText primary="Descubrir eventos" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <AddCircleIcon />
+            </ListItemIcon>
+            <ListItemText primary="Crear eventos" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <InfoIcon />
+            </ListItemIcon>
+            <ListItemText primary="Acerca de" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <ContactMailIcon />
+            </ListItemIcon>
+            <ListItemText primary="Contacto" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <SettingsIcon />
+            </ListItemIcon>
+            <ListItemText primary="Centro de ayudas" />
+          </ListItem>
+        </List>
+        <Divider />
+        <List>
+          <ListItem button>
+            <ListItemIcon>
+              <HowToRegIcon />
+            </ListItemIcon>
+            <ListItemText primary="Registrarse" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <LoginIcon />
+            </ListItemIcon>
+            <ListItemText primary="Iniciar sesion" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <ExitToAppIcon />
+            </ListItemIcon>
+            <ListItemText primary="Cerrar Sesion" />
+          </ListItem>
+        </List>
+      </StyledDrawer>
+    </>
   );
 }
 
