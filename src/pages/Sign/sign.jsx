@@ -17,7 +17,7 @@ export default function Sign() {
   return (
     <div className="App">
       <div className={containerClass} id="container">
-        <SignUpForm />
+        <SignUpForm  />
         <SignInForm />
         <div className="overlay-container">
           <div className="overlay">
