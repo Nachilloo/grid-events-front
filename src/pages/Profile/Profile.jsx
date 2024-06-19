@@ -1,71 +1,63 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 const Profile = () => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [userData, setUserData] = useState(null);
+  const [purchasedEvents, setPurchasedEvents] = useState([]);
+  const [favoriteEvents, setFavoriteEvents] = useState([]);
 
   useEffect(() => {
-    const token = localStorage.getItem('token'); // Obtener el token de autenticación desde el almacenamiento local
+    // Reemplaza 'YOUR_API_ENDPOINT' con la URL real de tu API
+    const fetchProfileData = async () => {
+      try {
+        const userResponse = await axios.get('/api/user/:id'); // Endpoint para obtener datos del usuario
+        setUserData(userResponse.data);
 
-    fetch('/api/user', {
-      headers: {
-        'Authorization': `Bearer ${token}` // Incluir el token en el encabezado de la solicitud
+        const purchasedResponse = await axios.get('/api/event/:id'); // Endpoint para obtener eventos comprados
+        setPurchasedEvents(purchasedResponse.data);
+
+        const favoriteResponse = await axios.get('/api/event/:id/favorite'); // Endpoint para obtener eventos favoritos
+        setFavoriteEvents(favoriteResponse.data);
+      } catch (error) {
+        console.error('Error fetching profile data', error);
       }
-    })
-      .then(response => {
-        if (!response.ok) {
-          return response.text().then(text => {
-            throw new Error(text);
-          });
-        }
-        return response.json();
-      })
-      .then(data => {
-        setUser(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching user data:', error.message);
-        setError(error);
-        setLoading(false);
-      });
+    };
+
+    fetchProfileData();
   }, []);
 
-  if (loading) {
-    return <div>Cargando...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
+  if (!userData) {
+    return <div>Loading...</div>;
   }
 
   return (
     <div>
-      <h1>Mi Perfil</h1>
+      <h1>Perfil de {userData.name}</h1>
       <div>
-        <strong>Nombre:</strong> {user.name}
+        <h2>Información del Usuario</h2>
+        <p>Nombre: {userData.firstname}</p>
+        <p>Email: {userData.email}</p>
+        {/* Muestra otros datos del usuario si es necesario */}
       </div>
       <div>
-        <strong>Email:</strong> {user.email}
-      </div>
-      <div>
-        <strong>Edad:</strong> {user.age}
-      </div>
-      <div>
-        <strong>Biografía:</strong> {user.bio}
-      </div>
-      <div>
-        <strong>Eventos Registrados:</strong>
+        <h2>Eventos Comprados</h2>
         <ul>
-          {user.events.map((event, index) => (
-            <li key={index}>{event}</li>
+          {purchasedEvents.map(event => (
+            <li key={event.id}>{event.name}</li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h2>Eventos Favoritos</h2>
+        <ul>
+          {favoriteEvents.map(event => (
+            <li key={event.id}>{event.name}</li>
           ))}
         </ul>
       </div>
     </div>
   );
-}
+};
 
 export default Profile;
 
