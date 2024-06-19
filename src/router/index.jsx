@@ -1,5 +1,5 @@
 import { createBrowserRouter, redirect } from "react-router-dom";
-import Sign from "../pages/Sign/sign";
+import Sign from "../pages/Sign/Sign";
 import Home from "../pages/Home/Home";
 import Root from "../layout";
 import Contact from "../pages/Contact/Contact";
