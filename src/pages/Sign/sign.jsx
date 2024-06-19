@@ -45,6 +45,23 @@ function Signup() {
   };
 
   return (
+
+    <div className="App">
+      <div className={containerClass} id="container">
+        <SignUpForm  />
+        <SignInForm />
+        <div className="overlay-container">
+          <div className="overlay">
+            <div className="overlay-panel overlay-left">
+              <h1>Bienvenido de vuelta!</h1>
+              <p>
+                Para mantenerse conectado con nosotros, inicie sesión con su
+                información personal
+              </p>
+              <button
+                className="ghost"
+                id="signIn"
+                onClick={() => handleOnClick("signIn")}
     <ThemeProvider theme={defaultTheme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
@@ -115,6 +132,7 @@ function Signup() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+
               >
                 Entrar
               </Button>
