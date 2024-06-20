@@ -1,6 +1,8 @@
+// import React from "react";
 import Carousel from "react-material-ui-carousel";
-import { Paper, Typography, Container, Grid, Avatar, Box } from "@mui/material";
+import { Paper, Typography, Container, Grid, Box } from "@mui/material";
 import CategoryHome from "../../components/CategoryHome";
+import ListEvents from "../../components/ListEvents";
 
 const items = [
   {
@@ -22,8 +24,8 @@ const Home = () => {
     <Container
       maxWidth="lg"
       style={{
-        margin: "40px",
-        height: "100vh",
+        margin: "40px auto",
+        height: "100%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -33,11 +35,19 @@ const Home = () => {
         <Grid item xs={12} md={8}>
           <Carousel>
             {items.map((item, index) => (
-              <Paper key={index}>
-                <img
+              <Paper
+                key={index}
+                style={{ padding: "20px", textAlign: "center" }}
+              >
+                <Box
+                  component="img"
                   src={item.img}
                   alt={item.name}
-                  style={{ width: "800px", height: "400px" }}
+                  sx={{
+                    width: { xs: "100%", md: "800px" },
+                    height: { xs: "auto", md: "400px" },
+                    maxHeight: { xs: 200, md: 400 },
+                  }}
                 />
                 <Typography variant="h4" component="h2" textAlign="center">
                   {item.name}
@@ -49,19 +59,21 @@ const Home = () => {
         </Grid>
 
         <Grid item xs={12} md={4}>
-          <div style={{ margin: "18%" }}>
-            <Typography variant="h3" component="h1" gutterBottom align="center">
+          <Box sx={{ margin: { xs: "10% 0", md: "18%" }, textAlign: "center" }}>
+            <Typography variant="h3" component="h1" gutterBottom>
               Haz lo que te apasione
             </Typography>
-            <Typography variant="body1" align="center">
+            <Typography variant="body1">
               Aquí puedes encontrar la mejor información sobre nuestros eventos.
               Navega a través de las imágenes para saber más.
             </Typography>
-          </div>
+          </Box>
         </Grid>
       </Grid>
+
       <CategoryHome />
-      {/* meter aqui la card */}
+
+      <ListEvents />
     </Container>
   );
 };
