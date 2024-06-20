@@ -1,8 +1,12 @@
+import CardEvent from "../../components/CardEvent";
 
 function AllEvents() {
   return (
-    <div>AllEvents</div>
-  )
+    <div className="CardTotal">
+      <CardEvent />
+      <CardEvent />
+      <CardEvent />
+    </div>
+  );
 }
-
-export default AllEvents
+export default AllEvents;
