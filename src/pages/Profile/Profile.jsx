@@ -29,18 +29,24 @@ function Profile() {
 
   return (
     <div>
-      <h1>Perfil de {userProfile.name}</h1>
+      <h1>Perfil de {userProfile.firstname}</h1>
       <div>
         <h2>Información del Usuario</h2>
-        <p>Nombre: {userProfile.name}</p>
+        <p>Nombre: {userProfile.firstname}</p>
+        <p>Apellido: {userProfile.lastname}</p>
         <p>Email: {userProfile.email}</p>
-        {/* Muestra otros datos del usuario si es necesario */}
+        <p>Gender: {userProfile.gender}</p>
+        <p>City: {userProfile.city}</p>
+        <p>Country: {userProfile.country}</p>
+        <p>Phone: {userProfile.phone}</p>
       </div>
       <div>
-        <h2>Eventos Comprados</h2>
-      </div>
-      <div>
-        <h2>Eventos Favoritos</h2>
+        <h2>Mis Eventos Favoritos</h2>
+        <ul>
+        {userProfile.events && userProfile.events.map(events => (
+            <li key={events.id}>{events.title}</li>
+          ))}
+        </ul>
       </div>
     </div>
   );
