@@ -1,5 +1,4 @@
 import { createBrowserRouter, redirect } from "react-router-dom";
-import Sign from "../pages/Sign/Sign";
 import Home from "../pages/Home/Home";
 import Root from "../layout";
 import Contact from "../pages/Contact/Contact";
@@ -8,6 +7,7 @@ import Event from "../pages/Event/Event";
 import Profile from "../pages/Profile/Profile";
 import AllEvents from "../pages/AllEvents/AllEvents";
 import NotFound from "../pages/NotFound/NotFound";
+import Sign from "../pages/Sign/Sign";
 
 const router = createBrowserRouter([
   {

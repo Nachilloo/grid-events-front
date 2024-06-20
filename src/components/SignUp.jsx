@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { signUp } from "../services/authService";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function SignUpForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const handleName = (event) => {
     setName(event.target.value);
@@ -26,13 +28,13 @@ function SignUpForm() {
     };
 
     const result = await signUp(formData);
-    Navigate("/profile");
+    navigate("/profile");
     console.log(result);
   };
 
   return (
     <div className="form-container sign-up-container">
-      <form onSubmit={handleOnSubmit} className="formSign">
+      <form className="formSign">
         <h1>Crea una cuenta</h1>
         <input
           type="text"
@@ -55,7 +57,7 @@ function SignUpForm() {
           onChange={handlePassword}
           placeholder="Password"
         />
-        <button onClick={handleOnSubmit} className="button">
+        <button type="button" onClick={handleOnSubmit} className="button">
           Sign Up
         </button>
       </form>

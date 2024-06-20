@@ -1,63 +1,75 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
+import { getUserProfile } from '../../services/userService';
+import { useEffect, useState } from 'react';
+import { Container, Typography, Card, CardContent, CircularProgress, List, ListItem, ListItemText, Alert, Avatar } from '@mui/material';
 
-const Profile = () => {
-  const [userData, setUserData] = useState(null);
-  const [purchasedEvents, setPurchasedEvents] = useState([]);
-  const [favoriteEvents, setFavoriteEvents] = useState([]);
+function Profile() {
+  const [userProfile, setUserProfile] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Reemplaza 'YOUR_API_ENDPOINT' con la URL real de tu API
-    const fetchProfileData = async () => {
+    const getUserDataProfile = async () => {
       try {
-        const userResponse = await axios.get('/api/user/:id'); // Endpoint para obtener datos del usuario
-        setUserData(userResponse.data);
-
-        const purchasedResponse = await axios.get('/api/event/:id'); // Endpoint para obtener eventos comprados
-        setPurchasedEvents(purchasedResponse.data);
-
-        const favoriteResponse = await axios.get('/api/event/:id/favorite'); // Endpoint para obtener eventos favoritos
-        setFavoriteEvents(favoriteResponse.data);
-      } catch (error) {
-        console.error('Error fetching profile data', error);
+        const result = await getUserProfile();
+        setUserProfile(result);
+      } catch (err) {
+        console.error('Error fetching user profile:', err)
+        setError(err.message);
       }
     };
 
-    fetchProfileData();
+    getUserDataProfile();
   }, []);
 
-  if (!userData) {
-    return <div>Loading...</div>;
+  if (error) {
+    return <Container><Alert severity="error">Error: {error}</Alert></Container>
+  }
+
+  if (!userProfile) {
+    return (
+      <Container style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <CircularProgress />
+    </Container>
+    )
   }
 
   return (
-    <div>
-      <h1>Perfil de {userData.name}</h1>
-      <div>
-        <h2>Información del Usuario</h2>
-        <p>Nombre: {userData.firstname}</p>
-        <p>Email: {userData.email}</p>
-        {/* Muestra otros datos del usuario si es necesario */}
-      </div>
-      <div>
-        <h2>Eventos Comprados</h2>
-        <ul>
-          {purchasedEvents.map(event => (
-            <li key={event.id}>{event.name}</li>
+    <Container>
+    <Typography variant="h4" gutterBottom>
+      Perfil de {userProfile.firstname}
+    </Typography>
+    <Card style={{ marginBottom: '20px' }}>
+      <CardContent style={{ display: 'flex', alignItems: 'center' }}>
+        <Avatar
+          alt={userProfile.firstname}
+          src={userProfile.imgProfile}
+          style={{ width: 100, height: 100, marginRight: 20 }}
+        />
+        <div>
+          <Typography variant="h6">Información del Usuario</Typography>
+          <Typography variant="body1"><strong>Nombre:</strong> {userProfile.firstname}</Typography>
+          <Typography variant="body1"><strong>Apellido:</strong> {userProfile.lastname}</Typography>
+          <Typography variant="body1"><strong>Email:</strong> {userProfile.email}</Typography>
+          <Typography variant="body1"><strong>Género:</strong> {userProfile.gender}</Typography>
+          <Typography variant="body1"><strong>Ciudad:</strong> {userProfile.city}</Typography>
+          <Typography variant="body1"><strong>País:</strong> {userProfile.country}</Typography>
+          <Typography variant="body1"><strong>Teléfono:</strong> {userProfile.phone}</Typography>
+        </div>
+      </CardContent>
+    </Card>
+    <Card style={{ marginBottom: '20px' }}>
+      <CardContent>
+        <Typography variant="h6">Eventos Asociados</Typography>
+        <List>
+          {userProfile.events && userProfile.events.map(event => (
+            <ListItem key={event.id}>
+              <ListItemText primary={event.title} />
+            </ListItem>
           ))}
-        </ul>
-      </div>
-      <div>
-        <h2>Eventos Favoritos</h2>
-        <ul>
-          {favoriteEvents.map(event => (
-            <li key={event.id}>{event.name}</li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
-};
+        </List>
+      </CardContent>
+    </Card>
+  </Container>
+);
+}
 
 export default Profile;
-
