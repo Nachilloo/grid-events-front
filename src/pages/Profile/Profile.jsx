@@ -1,5 +1,6 @@
 import { getUserProfile } from '../../services/userService';
 import { useEffect, useState } from 'react';
+import { Container, Typography, Card, CardContent, CircularProgress, List, ListItem, ListItemText, Alert, Avatar } from '@mui/material';
 
 function Profile() {
   const [userProfile, setUserProfile] = useState(null);
@@ -11,7 +12,7 @@ function Profile() {
         const result = await getUserProfile();
         setUserProfile(result);
       } catch (err) {
-        console.error('Error fetching user profile:', err);
+        console.error('Error fetching user profile:', err)
         setError(err.message);
       }
     };
@@ -20,36 +21,55 @@ function Profile() {
   }, []);
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <Container><Alert severity="error">Error: {error}</Alert></Container>
   }
 
   if (!userProfile) {
-    return <div>Loading...</div>;
+    return (
+      <Container style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <CircularProgress />
+    </Container>
+    )
   }
 
   return (
-    <div>
-      <h1>Perfil de {userProfile.firstname}</h1>
-      <div>
-        <h2>Información del Usuario</h2>
-        <p>Nombre: {userProfile.firstname}</p>
-        <p>Apellido: {userProfile.lastname}</p>
-        <p>Email: {userProfile.email}</p>
-        <p>Gender: {userProfile.gender}</p>
-        <p>City: {userProfile.city}</p>
-        <p>Country: {userProfile.country}</p>
-        <p>Phone: {userProfile.phone}</p>
-      </div>
-      <div>
-        <h2>Mis Eventos Favoritos</h2>
-        <ul>
-        {userProfile.events && userProfile.events.map(events => (
-            <li key={events.id}>{events.title}</li>
+    <Container>
+    <Typography variant="h4" gutterBottom>
+      Perfil de {userProfile.firstname}
+    </Typography>
+    <Card style={{ marginBottom: '20px' }}>
+      <CardContent style={{ display: 'flex', alignItems: 'center' }}>
+        <Avatar
+          alt={userProfile.firstname}
+          src={userProfile.imgProfile}
+          style={{ width: 100, height: 100, marginRight: 20 }}
+        />
+        <div>
+          <Typography variant="h6">Información del Usuario</Typography>
+          <Typography variant="body1"><strong>Nombre:</strong> {userProfile.firstname}</Typography>
+          <Typography variant="body1"><strong>Apellido:</strong> {userProfile.lastname}</Typography>
+          <Typography variant="body1"><strong>Email:</strong> {userProfile.email}</Typography>
+          <Typography variant="body1"><strong>Género:</strong> {userProfile.gender}</Typography>
+          <Typography variant="body1"><strong>Ciudad:</strong> {userProfile.city}</Typography>
+          <Typography variant="body1"><strong>País:</strong> {userProfile.country}</Typography>
+          <Typography variant="body1"><strong>Teléfono:</strong> {userProfile.phone}</Typography>
+        </div>
+      </CardContent>
+    </Card>
+    <Card style={{ marginBottom: '20px' }}>
+      <CardContent>
+        <Typography variant="h6">Eventos Asociados</Typography>
+        <List>
+          {userProfile.events && userProfile.events.map(event => (
+            <ListItem key={event.id}>
+              <ListItemText primary={event.title} />
+            </ListItem>
           ))}
-        </ul>
-      </div>
-    </div>
-  );
+        </List>
+      </CardContent>
+    </Card>
+  </Container>
+);
 }
 
 export default Profile;
