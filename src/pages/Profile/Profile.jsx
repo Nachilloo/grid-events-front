@@ -1,63 +1,55 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
+import { getUserProfile } from '../../services/userService';
+import { useEffect, useState } from 'react';
 
-const Profile = () => {
-  const [userData, setUserData] = useState(null);
-  const [purchasedEvents, setPurchasedEvents] = useState([]);
-  const [favoriteEvents, setFavoriteEvents] = useState([]);
+function Profile() {
+  const [userProfile, setUserProfile] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Reemplaza 'YOUR_API_ENDPOINT' con la URL real de tu API
-    const fetchProfileData = async () => {
+    const getUserDataProfile = async () => {
       try {
-        const userResponse = await axios.get('/api/user/:id'); // Endpoint para obtener datos del usuario
-        setUserData(userResponse.data);
-
-        const purchasedResponse = await axios.get('/api/event/:id'); // Endpoint para obtener eventos comprados
-        setPurchasedEvents(purchasedResponse.data);
-
-        const favoriteResponse = await axios.get('/api/event/:id/favorite'); // Endpoint para obtener eventos favoritos
-        setFavoriteEvents(favoriteResponse.data);
-      } catch (error) {
-        console.error('Error fetching profile data', error);
+        const result = await getUserProfile();
+        setUserProfile(result);
+      } catch (err) {
+        console.error('Error fetching user profile:', err);
+        setError(err.message);
       }
     };
 
-    fetchProfileData();
+    getUserDataProfile();
   }, []);
 
-  if (!userData) {
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (!userProfile) {
     return <div>Loading...</div>;
   }
 
   return (
     <div>
-      <h1>Perfil de {userData.name}</h1>
+      <h1>Perfil de {userProfile.firstname}</h1>
       <div>
         <h2>Información del Usuario</h2>
-        <p>Nombre: {userData.firstname}</p>
-        <p>Email: {userData.email}</p>
-        {/* Muestra otros datos del usuario si es necesario */}
+        <p>Nombre: {userProfile.firstname}</p>
+        <p>Apellido: {userProfile.lastname}</p>
+        <p>Email: {userProfile.email}</p>
+        <p>Gender: {userProfile.gender}</p>
+        <p>City: {userProfile.city}</p>
+        <p>Country: {userProfile.country}</p>
+        <p>Phone: {userProfile.phone}</p>
       </div>
       <div>
-        <h2>Eventos Comprados</h2>
+        <h2>Mis Eventos Favoritos</h2>
         <ul>
-          {purchasedEvents.map(event => (
-            <li key={event.id}>{event.name}</li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <h2>Eventos Favoritos</h2>
-        <ul>
-          {favoriteEvents.map(event => (
-            <li key={event.id}>{event.name}</li>
+        {userProfile.events && userProfile.events.map(events => (
+            <li key={events.id}>{events.title}</li>
           ))}
         </ul>
       </div>
     </div>
   );
-};
+}
 
 export default Profile;
-
