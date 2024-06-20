@@ -29,6 +29,9 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import DescriptionIcon from "@mui/icons-material/Description";
 import LoginIcon from "@mui/icons-material/Login";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
+import Profile from "../pages/Profile/Profile";
+import { NavLink } from "react-router-dom";
+
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -162,7 +165,7 @@ function Header() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Perfil</MenuItem>
+              <MenuItem component={NavLink} to="/profile">Perfil</MenuItem>
               <MenuItem onClick={handleClose}>Cerrar sesion</MenuItem>
             </Menu>
           </div>
@@ -174,19 +177,19 @@ function Header() {
         onClose={toggleDrawer(false)}
       >
         <List>
-          <ListItem button>
+          <ListItem button component={NavLink} to="/">
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
-          <ListItem button>
+          <ListItem button component={NavLink} to="/events">
             <ListItemIcon>
               <DescriptionIcon />
             </ListItemIcon>
             <ListItemText primary="Descubrir eventos" />
           </ListItem>
-          <ListItem button>
+          <ListItem button component={NavLink} to="/create">
             <ListItemIcon>
               <AddCircleIcon />
             </ListItemIcon>
@@ -198,7 +201,7 @@ function Header() {
             </ListItemIcon>
             <ListItemText primary="Acerca de" />
           </ListItem>
-          <ListItem button>
+          <ListItem button component={NavLink} to="/contact">
             <ListItemIcon>
               <ContactMailIcon />
             </ListItemIcon>
@@ -213,13 +216,13 @@ function Header() {
         </List>
         <Divider />
         <List>
-          <ListItem button>
+          <ListItem button component={NavLink} to="/sign">
             <ListItemIcon>
               <HowToRegIcon />
             </ListItemIcon>
             <ListItemText primary="Registrarse" />
           </ListItem>
-          <ListItem button>
+          <ListItem button component={NavLink} to="/sign">
             <ListItemIcon>
               <LoginIcon />
             </ListItemIcon>
