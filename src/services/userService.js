@@ -7,7 +7,7 @@ const getUserProfile = async () => {
                 Authorization: localStorage.getItem('token')
             }
         })
-        console.log(data.result)
+        //console.log(data.result)
         return data.result
         
     } catch (error) {
