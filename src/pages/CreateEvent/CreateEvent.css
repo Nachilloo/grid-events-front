@@ -17,8 +17,8 @@
     min-height: 480px;
     font-family: sans-serif;
     text-align: center;
- 
-    
+
+
 }
 
 .App {
@@ -29,4 +29,12 @@
     align-items: center;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.categories {
+    background-color: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
 }
