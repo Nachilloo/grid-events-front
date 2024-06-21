@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./CreateEvent.css";
 import { createEvent } from "../../services/createService";
 
@@ -11,8 +11,17 @@ function CreateEvent() {
   const [location, setLocation] = useState("");
   const [date, setDate] = useState("");
   const [maxTickets, setMaxTickets] = useState("");
+  const [userId, setUserId] = useState(null);
 
   // const navigate = useNavigate();
+
+    useEffect(() => {
+      const storedUserId = localStorage.getItem("userId");
+      console.log("Retrieved userId:", storedUserId); 
+      if (storedUserId) {
+        setUserId(storedUserId);
+      }
+    }, []);
 
   const handleTitle = (event) => {
     setTitle(event.target.value);
@@ -49,6 +58,7 @@ function CreateEvent() {
       price,
       date,
       maxTickets,
+      userId
     };
     const result = await createEvent(formData);
   };
