@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -8,7 +8,6 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import Button from "@mui/material/Button";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
@@ -29,8 +28,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import DescriptionIcon from "@mui/icons-material/Description";
 import LoginIcon from "@mui/icons-material/Login";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
-import Profile from "../pages/Profile/Profile";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 
 const Search = styled("div")(({ theme }) => ({
@@ -82,7 +80,8 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
 function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
-
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate()
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -94,6 +93,30 @@ function Header() {
   const toggleDrawer = (open) => () => {
     setDrawerOpen(open);
   };
+  const handleLogin = (event) => {
+    setIsAuthenticated(true);
+    setAnchorEl(event.currentTarget);
+  };
+  
+  const handleLogout = () => {
+    toggleDrawer(false);
+    setIsAuthenticated(false)
+    localStorage.removeItem('token')
+    localStorage.removeItem('role')
+    localStorage.removeItem('user.id')
+    navigate('/sign')
+  }
+
+  const handleCombinedClick = () => {
+    handleLogin();
+    toggleDrawer(false);
+  };
+
+  const handleCombinedLogOut = () => {
+    handleLogout();
+    toggleDrawer(false);
+  }
+
 
   return (
     <>
@@ -133,12 +156,13 @@ function Header() {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="error">
+          
+          {localStorage.getItem('token') ? (<div>
+            <IconButton color="inherit">
+            <Badge badgeContent={0} color="error">
               <NotificationsIcon style={{ width: "30px", height: "30px" }} />
             </Badge>
-          </IconButton>
-          <div>
+           </IconButton>
             <IconButton
               edge="end"
               aria-label="account of current user"
@@ -165,10 +189,14 @@ function Header() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem component={NavLink} to="/profile">Perfil</MenuItem>
-              <MenuItem onClick={handleClose}>Cerrar sesion</MenuItem>
+              <MenuItem onClick={handleClose} component={NavLink} to="/profile">Perfil</MenuItem>
+              <MenuItem onClick={handleCombinedLogOut}>Cerrar sesion</MenuItem>
             </Menu>
-          </div>
+          </div> ) : (
+          <> </>
+          )
+ }
+          
         </Toolbar>
       </AppBar>
       <StyledDrawer
@@ -177,19 +205,20 @@ function Header() {
         onClose={toggleDrawer(false)}
       >
         <List>
-          <ListItem button component={NavLink} to="/">
+          
+          <ListItem onClick={toggleDrawer(false)} button component={NavLink} to="/">
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
-          <ListItem button component={NavLink} to="/events">
+          <ListItem onClick={toggleDrawer(false)} button component={NavLink} to="/events">
             <ListItemIcon>
               <DescriptionIcon />
             </ListItemIcon>
             <ListItemText primary="Descubrir eventos" />
           </ListItem>
-          <ListItem button component={NavLink} to="/create">
+          <ListItem onClick={toggleDrawer(false)} button component={NavLink} to="/create">
             <ListItemIcon>
               <AddCircleIcon />
             </ListItemIcon>
@@ -201,7 +230,7 @@ function Header() {
             </ListItemIcon>
             <ListItemText primary="Acerca de" />
           </ListItem>
-          <ListItem button component={NavLink} to="/contact">
+          <ListItem onClick={toggleDrawer(false)} button component={NavLink} to="/contact">
             <ListItemIcon>
               <ContactMailIcon />
             </ListItemIcon>
@@ -211,29 +240,34 @@ function Header() {
             <ListItemIcon>
               <SettingsIcon />
             </ListItemIcon>
-            <ListItemText primary="Centro de ayudas" />
+            <ListItemText primary="Centro de ayuda" />
           </ListItem>
         </List>
         <Divider />
         <List>
-          <ListItem button component={NavLink} to="/sign">
+        {!localStorage.getItem('token') ? (
+          <>
+          <ListItem onClick={handleCombinedClick} button component={NavLink} to="/sign">
             <ListItemIcon>
               <HowToRegIcon />
             </ListItemIcon>
             <ListItemText primary="Registrarse" />
           </ListItem>
-          <ListItem button component={NavLink} to="/sign">
+          <ListItem onClick={handleCombinedClick} button component={NavLink} to="/sign">
             <ListItemIcon>
               <LoginIcon />
             </ListItemIcon>
             <ListItemText primary="Iniciar sesion" />
           </ListItem>
-          <ListItem button>
+          </>
+        ) : (
+          <ListItem onClick={handleLogout} button component={NavLink} to="/">
             <ListItemIcon>
               <ExitToAppIcon />
             </ListItemIcon>
             <ListItemText primary="Cerrar Sesion" />
           </ListItem>
+          )}
         </List>
       </StyledDrawer>
     </>
