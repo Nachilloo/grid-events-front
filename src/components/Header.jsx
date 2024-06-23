@@ -30,7 +30,6 @@ import LoginIcon from "@mui/icons-material/Login";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import { NavLink, useNavigate } from "react-router-dom";
 
-
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -210,13 +209,17 @@ function Header() {
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
-            <ListItemText primary="Home" />
+            <Link to="/">
+              <ListItemText primary="Home" />{" "}
+            </Link>
           </ListItem>
           <ListItem onClick={toggleDrawer(false)} button component={NavLink} to="/events">
             <ListItemIcon>
               <DescriptionIcon />
             </ListItemIcon>
-            <ListItemText primary="Descubrir eventos" />
+            <Link to="/events">
+              <ListItemText primary="Descubrir eventos" />{" "}
+            </Link>
           </ListItem>
           <ListItem onClick={toggleDrawer(false)} button component={NavLink} to="/create">
             <ListItemIcon>
@@ -226,15 +229,27 @@ function Header() {
           </ListItem>
           <ListItem button>
             <ListItemIcon>
+              <DescriptionIcon />
+            </ListItemIcon>
+            <Link to="/editevent">
+              <ListItemText primary="Editar eventos" />{" "}
+            </Link>
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
               <InfoIcon />
             </ListItemIcon>
-            <ListItemText primary="Acerca de" />
+            <Link to="/about">
+              {" "}
+              <ListItemText primary="Acerca de" />
+            </Link>
           </ListItem>
           <ListItem onClick={toggleDrawer(false)} button component={NavLink} to="/contact">
             <ListItemIcon>
               <ContactMailIcon />
             </ListItemIcon>
-            <ListItemText primary="Contacto" />
+            <Link to="/contact">
+            <ListItemText primary="Contacto" /></Link>
           </ListItem>
           <ListItem button>
             <ListItemIcon>
@@ -251,12 +266,14 @@ function Header() {
             <ListItemIcon>
               <HowToRegIcon />
             </ListItemIcon>
-            <ListItemText primary="Registrarse" />
+            <Link to="/sign">
+            <ListItemText primary="Registrarse" /></Link>
           </ListItem>
           <ListItem onClick={handleCombinedClick} button component={NavLink} to="/sign">
             <ListItemIcon>
               <LoginIcon />
             </ListItemIcon>
+            
             <ListItemText primary="Iniciar sesion" />
           </ListItem>
           </>

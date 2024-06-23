@@ -10,6 +10,7 @@ import NotFound from "../pages/NotFound/NotFound";
 import Sign from "../pages/Sign/Sign";
 import CreateEvent from "../pages/CreateEvent/CreateEvent";
 
+
 const router = createBrowserRouter([
   {
     path: "",
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/event",
         element: <Event />,
+      },
+      {
+        path: "/editevent",
+        element: <EditEventPage />,
       },
       {
         path: "/events",

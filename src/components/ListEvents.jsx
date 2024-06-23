@@ -76,8 +76,8 @@ const ScrollContainer = styled(Box)(({ theme }) => ({
   "&::-webkit-scrollbar": {
 //   display: 'block'
   },
-  "-ms-overflow-style": "none",
-  "scrollbar-width": "none",
+  // "-ms-overflow-style": "none",
+  // "scrollbar-width": "none",
 }));
 
 const EventCard = styled(Card)(({ theme }) => ({
