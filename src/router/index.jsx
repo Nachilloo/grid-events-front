@@ -8,7 +8,8 @@ import Profile from "../pages/Profile/Profile";
 import AllEvents from "../pages/AllEvents/AllEvents";
 import NotFound from "../pages/NotFound/NotFound";
 import Sign from "../pages/Sign/Sign";
-import EditEventPage from "../pages/Event/EditEventPage";
+import CreateEvent from "../pages/CreateEvent/CreateEvent";
+
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,18 @@ const router = createBrowserRouter([
       {
         path: "/events",
         element: <AllEvents />,
+      },
+      {
+        path: "/create",
+        loader: () => {
+          if (!localStorage.getItem("token")) {
+            alert("inicia sesion");
+            return redirect("/sign");
+          } else {
+            return null;
+          }
+        },
+        element: <CreateEvent />,
       },
       {
         path: "/profile",

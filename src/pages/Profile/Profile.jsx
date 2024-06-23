@@ -58,7 +58,7 @@ function Profile() {
     </Card>
     <Card style={{ marginBottom: '20px' }}>
       <CardContent>
-        <Typography variant="h6">Eventos Asociados</Typography>
+        <Typography variant="h6">Mis Eventos Favoritos</Typography>
         <List>
           {userProfile.events && userProfile.events.map(event => (
             <ListItem key={event.id}>
