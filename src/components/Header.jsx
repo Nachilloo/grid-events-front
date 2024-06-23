@@ -29,6 +29,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import DescriptionIcon from "@mui/icons-material/Description";
 import LoginIcon from "@mui/icons-material/Login";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
+import { Link } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -178,13 +179,17 @@ function Header() {
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
-            <ListItemText primary="Home" />
+            <Link to="/">
+              <ListItemText primary="Home" />{" "}
+            </Link>
           </ListItem>
           <ListItem button>
             <ListItemIcon>
               <DescriptionIcon />
             </ListItemIcon>
-            <ListItemText primary="Descubrir eventos" />
+            <Link to="/events">
+              <ListItemText primary="Descubrir eventos" />{" "}
+            </Link>
           </ListItem>
           <ListItem button>
             <ListItemIcon>
@@ -194,15 +199,27 @@ function Header() {
           </ListItem>
           <ListItem button>
             <ListItemIcon>
+              <DescriptionIcon />
+            </ListItemIcon>
+            <Link to="/editevent">
+              <ListItemText primary="Editar eventos" />{" "}
+            </Link>
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
               <InfoIcon />
             </ListItemIcon>
-            <ListItemText primary="Acerca de" />
+            <Link to="/about">
+              {" "}
+              <ListItemText primary="Acerca de" />
+            </Link>
           </ListItem>
           <ListItem button>
             <ListItemIcon>
               <ContactMailIcon />
             </ListItemIcon>
-            <ListItemText primary="Contacto" />
+            <Link to="/contact">
+            <ListItemText primary="Contacto" /></Link>
           </ListItem>
           <ListItem button>
             <ListItemIcon>
@@ -217,12 +234,14 @@ function Header() {
             <ListItemIcon>
               <HowToRegIcon />
             </ListItemIcon>
-            <ListItemText primary="Registrarse" />
+            <Link to="/sign">
+            <ListItemText primary="Registrarse" /></Link>
           </ListItem>
           <ListItem button>
             <ListItemIcon>
               <LoginIcon />
             </ListItemIcon>
+            
             <ListItemText primary="Iniciar sesion" />
           </ListItem>
           <ListItem button>
