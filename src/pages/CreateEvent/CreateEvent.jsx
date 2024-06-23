@@ -49,6 +49,7 @@ function CreateEvent() {
   };
 
   const handleOnSubmit = async () => {
+    
     const formData = {
       title,
       description,
@@ -61,6 +62,7 @@ function CreateEvent() {
       userId
     };
     const result = await createEvent(formData);
+
   };
 
   return (
