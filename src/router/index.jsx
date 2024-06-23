@@ -9,7 +9,7 @@ import AllEvents from "../pages/AllEvents/AllEvents";
 import NotFound from "../pages/NotFound/NotFound";
 import Sign from "../pages/Sign/Sign";
 import CreateEvent from "../pages/CreateEvent/CreateEvent";
-
+import EditEventPage from "../pages/Event/EditEventPage"
 
 const router = createBrowserRouter([
   {

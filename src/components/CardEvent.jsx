@@ -2,6 +2,7 @@
 import { Grid, Container } from "@mui/material";
 import EventCardGrid from "../components/EventCardGrid";
 import { Link } from "react-router-dom";
+import EditEventPage from "../pages/Event/EditEventPage";
 
 const events = [
   {
