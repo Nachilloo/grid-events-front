@@ -32,7 +32,7 @@ const AllEvents = () => {
           variant="h2"
           sx={{ m: 2, fontSize: { xs: "2rem", md: "3rem" } }}
         >
-          Los mejores eventos en Las Palmas de Gran Canaria
+          Los mejores eventos del mundo
         </Typography>
         <Typography
           variant="h6"
@@ -42,18 +42,16 @@ const AllEvents = () => {
             fontSize: { xs: "1rem", md: "1.25rem" },
           }}
         >
-          Encuentra los mejores planes para hacer en Lpgc esta semana y descubre
-          todas las novedades con GridEvents. No te pierdas ninguno de los
-          planes que este fin de semana en Las Palmas de Gran Canaria. Todos los
+          Encuentra los mejores planes para hacer en el mundoesta semana y
+          descubre todas las novedades con GridEvents. No te pierdas ninguno de
+          los planes que este fin de semana en cualquier lugar. Todos los
           conciertos, exposiciones.
         </Typography>
       </ImageSection>
       <div className="CardTotal">
         <CardEvent />
-        <CardEvent />
-        <CardEvent />
       </div>
-      <Typography variant="h4" align="center" gutterBottom marginTop={'50px'}>
+      <Typography variant="h4" align="center" gutterBottom marginTop={"50px"}>
         Organizadores Destacados
       </Typography>
       <OrganizerList />
