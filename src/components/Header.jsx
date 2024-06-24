@@ -231,7 +231,7 @@ function Header() {
             <ListItemIcon>
               <DescriptionIcon />
             </ListItemIcon>
-            <Link to="/editevent">
+            <Link onClick={toggleDrawer(false)} to="/editevent">
               <ListItemText primary="Editar eventos" />{" "}
             </Link>
           </ListItem>
