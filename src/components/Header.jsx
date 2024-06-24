@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -8,7 +8,6 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import Button from "@mui/material/Button";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
@@ -29,7 +28,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import DescriptionIcon from "@mui/icons-material/Description";
 import LoginIcon from "@mui/icons-material/Login";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
-import { Link } from "react-router-dom";
+import { NavLink, useNavigate, Link } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -80,7 +79,8 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
 function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
-
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate()
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -92,6 +92,30 @@ function Header() {
   const toggleDrawer = (open) => () => {
     setDrawerOpen(open);
   };
+  const handleLogin = (event) => {
+    setIsAuthenticated(true);
+    setAnchorEl(event.currentTarget);
+  };
+  
+  const handleLogout = () => {
+    toggleDrawer(false);
+    setIsAuthenticated(false)
+    localStorage.removeItem('token')
+    localStorage.removeItem('role')
+    localStorage.removeItem('user.id')
+    navigate('/sign')
+  }
+
+  const handleCombinedClick = () => {
+    handleLogin();
+    toggleDrawer(false);
+  };
+
+  const handleCombinedLogOut = () => {
+    handleLogout();
+    toggleDrawer(false);
+  }
+
 
   return (
     <>
@@ -131,12 +155,13 @@ function Header() {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="error">
+          
+          {localStorage.getItem('token') ? (<div>
+            <IconButton color="inherit">
+            <Badge badgeContent={0} color="error">
               <NotificationsIcon style={{ width: "30px", height: "30px" }} />
             </Badge>
-          </IconButton>
-          <div>
+           </IconButton>
             <IconButton
               edge="end"
               aria-label="account of current user"
@@ -163,10 +188,14 @@ function Header() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Perfil</MenuItem>
-              <MenuItem onClick={handleClose}>Cerrar sesion</MenuItem>
+              <MenuItem onClick={handleClose} component={NavLink} to="/profile">Perfil</MenuItem>
+              <MenuItem onClick={handleCombinedLogOut}>Cerrar sesion</MenuItem>
             </Menu>
-          </div>
+          </div> ) : (
+          <> </>
+          )
+ }
+          
         </Toolbar>
       </AppBar>
       <StyledDrawer
@@ -175,7 +204,8 @@ function Header() {
         onClose={toggleDrawer(false)}
       >
         <List>
-          <ListItem button>
+          
+          <ListItem onClick={toggleDrawer(false)} button component={NavLink} to="/">
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
@@ -183,7 +213,7 @@ function Header() {
               <ListItemText primary="Home" />{" "}
             </Link>
           </ListItem>
-          <ListItem button>
+          <ListItem onClick={toggleDrawer(false)} button component={NavLink} to="/events">
             <ListItemIcon>
               <DescriptionIcon />
             </ListItemIcon>
@@ -191,7 +221,7 @@ function Header() {
               <ListItemText primary="Descubrir eventos" />{" "}
             </Link>
           </ListItem>
-          <ListItem button>
+          <ListItem onClick={toggleDrawer(false)} button component={NavLink} to="/create">
             <ListItemIcon>
               <AddCircleIcon />
             </ListItemIcon>
@@ -201,7 +231,7 @@ function Header() {
             <ListItemIcon>
               <DescriptionIcon />
             </ListItemIcon>
-            <Link to="/editevent">
+            <Link onClick={toggleDrawer(false)} to="/editevent">
               <ListItemText primary="Editar eventos" />{" "}
             </Link>
           </ListItem>
@@ -209,47 +239,52 @@ function Header() {
             <ListItemIcon>
               <InfoIcon />
             </ListItemIcon>
-            <Link to="/about">
+            <Link onClick={toggleDrawer(false)} to="/about">
               {" "}
               <ListItemText primary="Acerca de" />
             </Link>
           </ListItem>
-          <ListItem button>
+          <ListItem onClick={toggleDrawer(false)} button component={NavLink} to="/contact">
             <ListItemIcon>
               <ContactMailIcon />
             </ListItemIcon>
-            <Link to="/contact">
+            <Link onClick={toggleDrawer(false)} to="/contact">
             <ListItemText primary="Contacto" /></Link>
           </ListItem>
           <ListItem button>
             <ListItemIcon>
               <SettingsIcon />
             </ListItemIcon>
-            <ListItemText primary="Centro de ayudas" />
+            <ListItemText primary="Centro de ayuda" />
           </ListItem>
         </List>
         <Divider />
         <List>
-          <ListItem button>
+        {!localStorage.getItem('token') ? (
+          <>
+          <ListItem onClick={handleCombinedClick} button component={NavLink} to="/sign">
             <ListItemIcon>
               <HowToRegIcon />
             </ListItemIcon>
             <Link to="/sign">
             <ListItemText primary="Registrarse" /></Link>
           </ListItem>
-          <ListItem button>
+          <ListItem onClick={handleCombinedClick} button component={NavLink} to="/sign">
             <ListItemIcon>
               <LoginIcon />
             </ListItemIcon>
             
             <ListItemText primary="Iniciar sesion" />
           </ListItem>
-          <ListItem button>
+          </>
+        ) : (
+          <ListItem onClick={handleLogout} button component={NavLink} to="/">
             <ListItemIcon>
               <ExitToAppIcon />
             </ListItemIcon>
             <ListItemText primary="Cerrar Sesion" />
           </ListItem>
+          )}
         </List>
       </StyledDrawer>
     </>
