@@ -10,6 +10,7 @@ import NotFound from "../pages/NotFound/NotFound";
 import Sign from "../pages/Sign/Sign";
 import CreateEvent from "../pages/CreateEvent/CreateEvent";
 import EditEventPage from "../pages/Event/EditEventPage"
+import EventDetailPage from "../pages/Event/EventDetailPage";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: "/events",
         element: <AllEvents />,
+      },
+      {
+        path: "/event/:eventId",
+        element: <EventDetailPage />,
       },
       {
         path: "/create",

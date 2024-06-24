@@ -1,19 +1,20 @@
-// import * as React from "react";
+
 import { Box, Grid, Container, Typography, Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 function Footer() {
   const elements = [
     {
       header: "Centro de recursos",
-      links: ["Empleo", "Soporte", "Privacidad", "Terminos"],
+      links: ["Empleo", "Privacidad", "Terminos"],
     },
     {
       header: "Cuenta",
       links: ["Ingresar", "Registrar"],
     },
     {
-      header: "Contacta con atencion al cliente",
-      links: ["Contacto", "X", "Facebook", "Instagram"],
+      header: "Contacta con nosotros",
+      links: ["Contacto"],
     },
   ];
 

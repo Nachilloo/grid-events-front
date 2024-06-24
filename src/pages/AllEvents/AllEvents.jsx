@@ -1,6 +1,5 @@
 import CardEvent from "../../components/CardEvent";
 
-// import React from 'react';
 import { Container, Typography, Box } from '@mui/material';
 import { styled } from '@mui/system';
 import OrganizerList from "../AllEvents/OrganizerList";
