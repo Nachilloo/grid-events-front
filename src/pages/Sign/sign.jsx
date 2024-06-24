@@ -53,7 +53,4 @@ export default function Sign() {
       </div>
     </div>
   );
-
-
 }
-
