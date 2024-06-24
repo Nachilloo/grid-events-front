@@ -1,6 +1,6 @@
 import { getUserProfile } from '../../services/userService';
 import { useEffect, useState } from 'react';
-import { Container, Typography, Card, CardContent, CircularProgress, List, ListItem, ListItemText, Alert, Avatar } from '@mui/material';
+import { Container, Typography, Card, CardContent, CircularProgress, List, ListItem, ListItemText, Alert, Avatar, Grid } from '@mui/material';
 
 function Profile() {
   const [userProfile, setUserProfile] = useState(null);
@@ -59,13 +59,17 @@ function Profile() {
     <Card style={{ marginBottom: '20px' }}>
       <CardContent>
         <Typography variant="h6">Mis Eventos Favoritos</Typography>
-        <List>
-          {userProfile.events && userProfile.events.map(event => (
-            <ListItem key={event.id}>
+        {<Container sx={{ py: 8 }} maxWidth="lg">
+          <Grid container spacing={4}>
+             <List>
+               {userProfile.events && userProfile.events.map(event => (
+               <ListItem key={event.id}>
               <ListItemText primary={event.title} />
-            </ListItem>
-          ))}
-        </List>
+              </ListItem>
+             ))}
+            </List>
+          </Grid>
+        </Container>}
       </CardContent>
     </Card>
   </Container>
@@ -73,3 +77,4 @@ function Profile() {
 }
 
 export default Profile;
+

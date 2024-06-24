@@ -10,4 +10,22 @@ const fetchEvents = async () => {
     }
 }
 
-export { fetchEvents };
+const favoriteEvent = async (eventId) => {
+    try {
+        await api.post(`/event/${eventId}/favorite`);
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+};
+
+const unfavoriteEvent = async (eventId) => {
+    try {
+        await api.delete(`/event/${eventId}/favorite`);
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+};
+
+export { fetchEvents, favoriteEvent, unfavoriteEvent };
