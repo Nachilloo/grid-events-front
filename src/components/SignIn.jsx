@@ -20,7 +20,6 @@ function SignInForm() {
       email,
       password,
     };
-    console.log(formData)
     const result = await login(formData);
     navigate("/profile");
   };
