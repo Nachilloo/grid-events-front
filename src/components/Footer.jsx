@@ -1,43 +1,41 @@
-// import * as React from "react";
+
 import { Box, Grid, Container, Typography, Button } from "@mui/material";
 
 function Footer() {
   const elements = [
     {
       header: "Centro de recursos",
-      links: ["Empleo", "Soporte", "Privacidad", "Terminos"],
+      links: ["Empleo", "Privacidad", "Terminos"],
     },
     {
       header: "Cuenta",
       links: ["Ingresar", "Registrar"],
     },
     {
-      header: "Contacta con atencion al cliente",
-      links: ["Contacto", "X", "Facebook", "Instagram"],
+      header: "Contacta con nosotros",
+      links: ["Contacto"],
     },
   ];
 
   function generateFooterElements() {
-    const footerElements = elements.map((column) => {
-      return (
-          <Grid item xs={12} md={4}>
-            <Box borderBottom={1}>
-              <Button sx={{ color: "white", fontWeight: "bold" }}>
-                {column.header}
-              </Button>
-            </Box>
-            {column.links.map((link) => {
-              return (
-                <Box>
-                  <Button sx={{ color: "white" }}>{link}</Button>
-                </Box>
-              );
-            })}
-          </Grid>
-      );
-    });
+    const footerElements = elements.map((column, index) => ( // Added index as key
+      <Grid item key={index} xs={12} md={4}>
+        <Box key={column.header} borderBottom={1}> {/* Using column.header as key */}
+          <Button sx={{ color: "white", fontWeight: "bold" }}>
+            {column.header}
+          </Button>
+        </Box>
+        {column.links.map((link, idx) => ( // Added idx as key
+          <Box key={idx}>
+            <Button sx={{ color: "white" }}>{link}</Button>
+          </Box>
+        ))}
+      </Grid>
+    ));
+  
     return footerElements;
   }
+  
 
   return (
     <footer>

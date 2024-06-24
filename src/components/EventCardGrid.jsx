@@ -1,74 +1,62 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types"; //A GABRIEL NO LE HACE FALTA ESTO PERO A MI SI, REVISARLO
+import { useState } from 'react';
+import { Card, CardContent, CardMedia, Typography, CardActionArea, IconButton } from '@mui/material';
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import { favoriteEvent, unfavoriteEvent } from '../services/eventsService';
 
-import {
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  IconButton,
-  Typography,
-  Box,
-} from "@mui/material";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 
-const EventCardGrid = ({ event }) => {
-  const [liked, setLiked] = useState(false);
+function EventCard({ event }) {
+    const [favorited, setFavorited] = useState(event.isFavorited || false);
+    const [loading, setLoading] = useState(false);
 
-  const handleLike = () => {
-    setLiked(!liked);
-  };
+    const handleFavoriteClick = async () => {
+        setLoading(true);
+        try {
+            if (favorited) {
+                await unfavoriteEvent(event.id);
+            } else {
+                await favoriteEvent(event.id);
+            }
+            setFavorited(!favorited);
+        } catch (error) {
+            console.error("Error updating favorite status", error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
-  return (
-    <Card sx={{ maxWidth: 345, position: "relative", borderRadius: 5 }}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="170"
-          image={event.image}
-          alt={event.title}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {event.title}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {event.description}
-          </Typography>
-          <Box sx={{ mt: 2 }}>
-            <Typography variant="body2" color="text.primary">
-              Fecha: {event.date}
-            </Typography>
-            <Typography variant="body2" color="text.primary">
-              Hora: {event.time}
-            </Typography>
-            <Typography variant="body2" color="text.primary">
-              Ubicación: {event.location}
-            </Typography>
-          </Box>
-        </CardContent>
-      </CardActionArea>
-      <IconButton
-        sx={{ position: "absolute", top: 8, right: 8 }}
-        onClick={handleLike}
-        color={liked ? "error" : "default"}
-      >
-        <FavoriteIcon />
-      </IconButton>
-    </Card>
-  );
-};
-  //A GABRIEL NO LE HACE FALTA ESTO PERO A MI SI, REVISARLO
-EventCardGrid.propTypes = {
-  event: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    time: PropTypes.string.isRequired,
-    location: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-  }).isRequired,
-};
-//HASTA AQUI REVISAR
+    return (
+        <Card>
+            <CardActionArea>
+                <CardMedia
+                    component="img"
+                    alt={event.title}
+                    height="140"
+                    image={event.imgProfile || 'default-image-url.jpg'}
+                    title={event.title}
+                />
+                <CardContent>
+                    <Typography gutterBottom variant="h6" component="div">
+                        {event.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        <p>{event.description}</p>
+                        <Typography variant="body2"><strong>€</strong> {event.price}</Typography>
+                        <Typography variant="body2"><strong></strong> {event.about}</Typography>
+                        <IconButton 
+                        onClick={handleFavoriteClick} 
+                        color="primary" 
+                        aria-label="mark as favorite"
+                        disabled={loading} // Deshabilita el botón mientras se realiza la llamada API
+                    >
+                        {favorited ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                    </IconButton>
+                    </Typography>
+                </CardContent>
+            </CardActionArea>
+        </Card>
+    );
+}
 
-export default EventCardGrid;
+export default EventCard;
+
