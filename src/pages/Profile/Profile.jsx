@@ -1,6 +1,6 @@
 import { getUserProfile } from '../../services/userService';
 import { useEffect, useState } from 'react';
-import { Container, Typography, Card, CardContent, CircularProgress, List, ListItem, ListItemText, Alert, Avatar, Grid, CardMedia } from '@mui/material';
+import { Container, Typography, Card, CardContent, CircularProgress, Alert, Avatar, CardMedia } from '@mui/material';
 import { styled } from "@mui/system";
 
 
@@ -70,22 +70,22 @@ function Profile() {
     >
       <Typography variant="h6">Mis Eventos Favoritos</Typography>
       {userProfile.events && userProfile.events.map(event => (
-          <EventCard>
-            <CardMedia
-              component="img"
-              height="350"
-              image={event.imgProfile}
-              alt={event.title}
-            />
-            <CardContent>
-              <Typography variant="h5" component="div">
-                {event.title}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {event.date}
-              </Typography>
-            </CardContent>
-          </EventCard>
+          <EventCard key={event.id}> {/* Assign a unique key to each EventCard */}
+          <CardMedia
+            component="img"
+            height="350"
+            image={event.imgProfile}
+            alt={event.title}
+          />
+          <CardContent>
+            <Typography variant="h5" component="div">
+              {event.title}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {event.date}
+            </Typography>
+          </CardContent>
+        </EventCard>
         ))}
     </Container>
   </Container>
