@@ -28,7 +28,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import DescriptionIcon from "@mui/icons-material/Description";
 import LoginIcon from "@mui/icons-material/Login";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, Link } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -231,7 +231,7 @@ function Header() {
             <ListItemIcon>
               <DescriptionIcon />
             </ListItemIcon>
-            <Link to="/editevent">
+            <Link onClick={toggleDrawer(false)} to="/editevent">
               <ListItemText primary="Editar eventos" />{" "}
             </Link>
           </ListItem>
@@ -239,7 +239,7 @@ function Header() {
             <ListItemIcon>
               <InfoIcon />
             </ListItemIcon>
-            <Link to="/about">
+            <Link onClick={toggleDrawer(false)} to="/about">
               {" "}
               <ListItemText primary="Acerca de" />
             </Link>
@@ -248,7 +248,7 @@ function Header() {
             <ListItemIcon>
               <ContactMailIcon />
             </ListItemIcon>
-            <Link to="/contact">
+            <Link onClick={toggleDrawer(false)} to="/contact">
             <ListItemText primary="Contacto" /></Link>
           </ListItem>
           <ListItem button>

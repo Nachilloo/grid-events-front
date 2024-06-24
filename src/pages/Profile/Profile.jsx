@@ -1,6 +1,8 @@
 import { getUserProfile } from '../../services/userService';
 import { useEffect, useState } from 'react';
-import { Container, Typography, Card, CardContent, CircularProgress, List, ListItem, ListItemText, Alert, Avatar } from '@mui/material';
+import { Container, Typography, Card, CardContent, CircularProgress, List, ListItem, ListItemText, Alert, Avatar, Grid, CardMedia } from '@mui/material';
+import { styled } from "@mui/system";
+
 
 function Profile() {
   const [userProfile, setUserProfile] = useState(null);
@@ -32,6 +34,12 @@ function Profile() {
     )
   }
 
+  const EventCard = styled(Card)(({ theme }) => ({
+    minWidth: 300,
+    margin: theme.spacing(2),
+    flex: "0 0 auto",
+  }));
+
   return (
     <Container>
     <Typography variant="h4" gutterBottom>
@@ -56,20 +64,33 @@ function Profile() {
         </div>
       </CardContent>
     </Card>
-    <Card style={{ marginBottom: '20px' }}>
-      <CardContent>
-        <Typography variant="h6">Mis Eventos Favoritos</Typography>
-        <List>
-          {userProfile.events && userProfile.events.map(event => (
-            <ListItem key={event.id}>
-              <ListItemText primary={event.title} />
-            </ListItem>
-          ))}
-        </List>
-      </CardContent>
-    </Card>
+    <Container
+      maxWidth="lg"
+      style={{ paddingTop: "2rem", paddingBottom: "2rem" }}
+    >
+      <Typography variant="h6">Mis Eventos Favoritos</Typography>
+      {userProfile.events && userProfile.events.map(event => (
+          <EventCard>
+            <CardMedia
+              component="img"
+              height="350"
+              image={event.imgProfile}
+              alt={event.title}
+            />
+            <CardContent>
+              <Typography variant="h5" component="div">
+                {event.title}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {event.date}
+              </Typography>
+            </CardContent>
+          </EventCard>
+        ))}
+    </Container>
   </Container>
 );
 }
 
 export default Profile;
+

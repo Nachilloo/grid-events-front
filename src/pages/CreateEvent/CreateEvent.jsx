@@ -70,6 +70,7 @@ function CreateEvent() {
   };
 
   const handleOnSubmit = async () => {
+    
     const formData = {
       title,
       description,
@@ -83,8 +84,10 @@ function CreateEvent() {
       categoryId: selectedCategory,
     };
     const result = await createEvent(formData);
+
     alert("Gracias, el evento ha sido creado");
     navigate("/");
+
   };
 
   return (
