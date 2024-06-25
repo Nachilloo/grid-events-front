@@ -1,11 +1,11 @@
 import CardEvent from "../../components/CardEvent";
-
+import EventsPage from "../../components/EventsPage";
 import { Container, Typography, Box } from '@mui/material';
 import { styled } from '@mui/system';
 import OrganizerList from "../AllEvents/OrganizerList";
 
 const ImageSection = styled(Box)(({ theme }) => ({
-  height: '80vh',
+  height: '40vh',
   background: `url('https://i0.wp.com/quehacerlaspalmas.com/wp-content/uploads/2024/05/fuegos-las-canteras.jpg?resize=799%2C533&ssl=1') no-repeat center center`,
   backgroundSize: 'cover',
   borderRadius: '4%',
@@ -46,14 +46,20 @@ const AllEvents = () => {
           los planes que este fin de semana en cualquier lugar. Todos los
           conciertos, exposiciones.
         </Typography>
+
       </ImageSection>
+      <EventsPage />
       <div className="CardTotal">
         <CardEvent />
       </div>
+      
       <Typography variant="h4" align="center" gutterBottom marginTop={"50px"}>
         Organizadores Destacados
       </Typography>
       <OrganizerList />
+      
+        
+        
     </Container>
   );
 }

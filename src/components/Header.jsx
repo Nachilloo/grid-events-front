@@ -135,17 +135,7 @@ function Header() {
             height="50"
           ></img>
           <Typography variant="subtitle1" sx={{ flexGrow: 1 }}>
-            Ponemos un texto aqui¿??
           </Typography>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
 
           {localStorage.getItem("token") ? (
             <div>
@@ -242,14 +232,14 @@ function Header() {
             </ListItemIcon>
             <ListItemText primary="Crear eventos" />
           </ListItem>
-          <ListItem button>
+          {/* <ListItem button>
             <ListItemIcon>
               <DescriptionIcon />
             </ListItemIcon>
             <Link onClick={toggleDrawer(false)} to="/editevent">
               <ListItemText primary="Editar eventos" />{" "}
             </Link>
-          </ListItem>
+          </ListItem> */}
           <ListItem button>
             <ListItemIcon>
               <InfoIcon />
@@ -272,12 +262,12 @@ function Header() {
               <ListItemText primary="Contacto" />
             </Link>
           </ListItem>
-          <ListItem button>
+          {/* <ListItem button>
             <ListItemIcon>
               <SettingsIcon />
             </ListItemIcon>
             <ListItemText primary="Centro de ayuda" />
-          </ListItem>
+          </ListItem> */}
         </List>
         <Divider />
         <List>
