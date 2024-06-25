@@ -41,7 +41,7 @@ const AllEvents = () => {
             fontSize: { xs: "1rem", md: "1.25rem" },
           }}
         >
-          Encuentra los mejores planes para hacer en el mundoesta semana y
+          Encuentra los mejores planes para hacer en el mundo esta semana y
           descubre todas las novedades con GridEvents. No te pierdas ninguno de
           los planes que este fin de semana en cualquier lugar. Todos los
           conciertos, exposiciones.
