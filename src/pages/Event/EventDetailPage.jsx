@@ -104,10 +104,6 @@ const EventDetailPage = () => {
         },
       }));
       
-  
-
- 
-
     return (
         <Container
           maxWidth="md"

@@ -3,14 +3,12 @@ import { Card, CardContent, CardMedia, Typography, IconButton, Box } from '@mui/
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { favoriteEvent, unfavoriteEvent } from '../services/eventsService';
-import EventsPage from './EventsPage';
 
 function EventCard({ event }) {
     const [favorited, setFavorited] = useState(event.isFavorited || false);
     const [loading, setLoading] = useState(false);
 
-    const handleFavoriteClick = async (e) => {
-        e.stopPropagation(); // Prevent the click event from bubbling up to CardActionArea
+    const handleFavoriteClick = async () => {
         setLoading(true);
         try {
             if (favorited) {
