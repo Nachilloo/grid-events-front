@@ -3,6 +3,7 @@ import Carousel from "react-material-ui-carousel";
 import { Paper, Typography, Container, Grid, Box } from "@mui/material";
 import CategoryHome from "../../components/CategoryHome";
 import ListEvents from "../../components/ListEvents";
+import CardEvent2 from "../../components/CardEvent2";
 
 const items = [
   {
@@ -74,6 +75,10 @@ const Home = () => {
       <CategoryHome />
 
       <ListEvents />
+      <Typography variant="h4" align="center" gutterBottom marginTop={"50px"}>
+        Ultimos 6 eventos añadidos
+      </Typography>
+      <CardEvent2 />
     </Container>
   );
 };
