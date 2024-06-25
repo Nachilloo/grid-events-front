@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import { Card, CardContent, CardMedia, Typography, CardActionArea, IconButton } from '@mui/material';
-import FavoriteIcon from '@mui/icons-material/Favorite'
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import { Card, CardContent, CardMedia, Typography, IconButton, Box } from '@mui/material';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { favoriteEvent, unfavoriteEvent } from '../services/eventsService';
-
 
 function EventCard({ event }) {
     const [favorited, setFavorited] = useState(event.isFavorited || false);
     const [loading, setLoading] = useState(false);
 
-    const handleFavoriteClick = async () => {
+    const handleFavoriteClick = async (e) => {
+        e.stopPropagation(); // Prevent the click event from bubbling up to CardActionArea
         setLoading(true);
         try {
             if (favorited) {
@@ -27,7 +27,7 @@ function EventCard({ event }) {
 
     return (
         <Card>
-            <CardActionArea>
+            <Box position="relative">
                 <CardMedia
                     component="img"
                     alt={event.title}
@@ -40,20 +40,25 @@ function EventCard({ event }) {
                         {event.title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        <p>{event.description}</p>
-                        <Typography variant="body2"><strong>€</strong> {event.price}</Typography>
-                        <Typography variant="body2"><strong></strong> {event.about}</Typography>
-                        <IconButton 
-                        onClick={handleFavoriteClick} 
-                        color="primary" 
-                        aria-label="mark as favorite"
-                        disabled={loading} // Deshabilita el botón mientras se realiza la llamada API
-                    >
-                        {favorited ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-                    </IconButton>
+                        {event.description}
+                    </Typography>
+                    <Typography variant="body2">
+                        <strong>€</strong> {event.price}
+                    </Typography>
+                    <Typography variant="body2">
+                        {event.about}
                     </Typography>
                 </CardContent>
-            </CardActionArea>
+                <IconButton
+                    onClick={handleFavoriteClick}
+                    color="primary"
+                    aria-label="mark as favorite"
+                    disabled={loading}
+                    sx={{ position: 'absolute', top: 8, right: 8 }}
+                >
+                    {favorited ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                </IconButton>
+            </Box>
         </Card>
     );
 }
