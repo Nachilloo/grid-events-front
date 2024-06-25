@@ -98,6 +98,7 @@ function Profile() {
         </EventCard>
         ))}
     </Container>
+    </Container>
   );
 }
 
