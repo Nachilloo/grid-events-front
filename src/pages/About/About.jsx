@@ -68,7 +68,7 @@ const theme = createTheme({
 
 const teamMembers = [
   {
-    name: "Gabriel",
+    name: "Gabriel Benitez",
     title: "Desarrollador Frontend",
     bio: "Experto en React y diseño de interfaces.",
     image: "./src/assets/photo5.jpg",
@@ -80,13 +80,13 @@ const teamMembers = [
     image: "./src/assets/photo1.jpg",
   },
   {
-    name: "Ignacio",
+    name: "Ignacio Galante",
     title: "Desarrollador Backend",
     bio: "Especialista en Node.js y bases de datos",
     image: "./src/assets/photo2.jpg",
   },
   {
-    name: "Diego",
+    name: "Diego Lozada ",
     title: "Diseñador Gráfico",
     bio: "Creativo en UX/UI y branding visual",
     image: "./src/assets/photo3.avif",
