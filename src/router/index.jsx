@@ -10,6 +10,7 @@ import Sign from "../pages/Sign/Sign";
 import CreateEvent from "../pages/CreateEvent/CreateEvent";
 import EditEventPage from "../pages/Event/EditEventPage"
 import EventDetailPage from "../pages/Event/EventDetailPage";
+import GatewayPayment from "../components/GatewayPayment";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: "/event/:eventId",
         element: <EventDetailPage />,
+      },
+      {
+        path: "/payment",
+        element: <GatewayPayment />,
       },
       {
         path: "/create",
