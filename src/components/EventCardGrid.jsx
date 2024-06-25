@@ -3,6 +3,7 @@ import { Card, CardContent, CardMedia, Typography, IconButton, Box } from '@mui/
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { favoriteEvent, unfavoriteEvent } from '../services/eventsService';
+import EventsPage from './EventsPage';
 
 function EventCard({ event }) {
     const [favorited, setFavorited] = useState(event.isFavorited || false);
@@ -26,6 +27,7 @@ function EventCard({ event }) {
     };
 
     return (
+        
         <Card>
             <Box position="relative">
                 <CardMedia
@@ -59,7 +61,7 @@ function EventCard({ event }) {
                     {favorited ? <FavoriteIcon /> : <FavoriteBorderIcon />}
                 </IconButton>
             </Box>
-        </Card>
+        </Card>   
     );
 }
 
