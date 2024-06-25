@@ -16,21 +16,7 @@ function EventCard({ event }) {
   const [loading, setLoading] = useState(false);
 
 
-    const handleFavoriteClick = async () => {
-        setLoading(true);
-        try {
-            if (favorited) {
-                await unfavoriteEvent(event.id);
-            } else {
-                await favoriteEvent(event.id);
-            }
-            setFavorited(!favorited);
-        } catch (error) {
-            console.error("Error updating favorite status", error);
-        } finally {
-            setLoading(false);
-        }
-    };
+
 
   // Función para guardar el estado de favoritos en localStorage
   const saveFavoriteStatus = (eventId, status) => {
