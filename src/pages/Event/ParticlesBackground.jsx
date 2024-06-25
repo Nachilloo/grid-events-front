@@ -59,7 +59,7 @@ const ParticlesBackground = () => {
           const distance = Math.sqrt(dx * dx + dy * dy);
           if (distance < 100) {
             ctx.beginPath();
-            ctx.strokeStyle = "blue";
+            ctx.strokeStyle = "#adadac";
             ctx.lineWidth = 1;
             ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
             ctx.lineTo(particlesArray[j].x, particlesArray[j].y);

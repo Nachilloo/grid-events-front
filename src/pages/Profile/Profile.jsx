@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { Container, Typography, Card, CardContent, CircularProgress, Alert, Avatar, CardMedia } from '@mui/material';
 import { styled } from "@mui/system";
 
-
 function Profile() {
   const [userProfile, setUserProfile] = useState(null);
   const [error, setError] = useState(null);
@@ -14,7 +13,7 @@ function Profile() {
         const result = await getUserProfile();
         setUserProfile(result);
       } catch (err) {
-        console.error('Error fetching user profile:', err)
+        console.error("Error fetching user profile:", err);
         setError(err.message);
       }
     };
@@ -23,15 +22,26 @@ function Profile() {
   }, []);
 
   if (error) {
-    return <Container><Alert severity="error">Error: {error}</Alert></Container>
+    return (
+      <Container>
+        <Alert severity="error">Error: {error}</Alert>
+      </Container>
+    );
   }
 
   if (!userProfile) {
     return (
-      <Container style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <CircularProgress />
-    </Container>
-    )
+      <Container
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <CircularProgress />
+      </Container>
+    );
   }
 
   const EventCard = styled(Card)(({ theme }) => ({
@@ -88,9 +98,7 @@ function Profile() {
         </EventCard>
         ))}
     </Container>
-  </Container>
-);
+  );
 }
 
 export default Profile;
-

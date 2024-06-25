@@ -5,7 +5,6 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import SearchIcon from "@mui/icons-material/Search";
@@ -80,7 +79,7 @@ function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -96,15 +95,15 @@ function Header() {
     setIsAuthenticated(true);
     setAnchorEl(event.currentTarget);
   };
-  
+
   const handleLogout = () => {
     toggleDrawer(false);
-    setIsAuthenticated(false)
-    localStorage.removeItem('token')
-    localStorage.removeItem('role')
-    localStorage.removeItem('user.id')
-    navigate('/sign')
-  }
+    setIsAuthenticated(false);
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("user.id");
+    navigate("/sign");
+  };
 
   const handleCombinedClick = () => {
     handleLogin();
@@ -114,8 +113,7 @@ function Header() {
   const handleCombinedLogOut = () => {
     handleLogout();
     toggleDrawer(false);
-  }
-
+  };
 
   return (
     <>
@@ -130,21 +128,14 @@ function Header() {
           >
             <MenuIcon />
           </IconButton>
-          <Avatar
-            sx={{
-              display: {
-                height: "80px",
-                width: "80px",
-                xs: "none",
-                md: "flex",
-              },
-              mr: 2,
-            }}
-            alt="Remy Sharp"
-            src="./src/assets/gridd.png"
-          />
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            GridEvents
+          <img
+            src="./src/assets/grid-logo-navbar.png"
+            alt="grid logo navbar"
+            width="140"
+            height="50"
+          ></img>
+          <Typography variant="subtitle1" sx={{ flexGrow: 1 }}>
+            Ponemos un texto aqui¿??
           </Typography>
           <Search>
             <SearchIconWrapper>
@@ -155,47 +146,57 @@ function Header() {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
-          
-          {localStorage.getItem('token') ? (<div>
-            <IconButton color="inherit">
-            <Badge badgeContent={0} color="error">
-              <NotificationsIcon style={{ width: "30px", height: "30px" }} />
-            </Badge>
-           </IconButton>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
-              style={{ width: "80px", height: "80px" }}
-            >
-              <AccountCircle style={{ width: "30px", height: "30px" }} />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              <MenuItem onClick={handleClose} component={NavLink} to="/profile">Perfil</MenuItem>
-              <MenuItem onClick={handleCombinedLogOut}>Cerrar sesion</MenuItem>
-            </Menu>
-          </div> ) : (
-          <> </>
-          )
- }
-          
+
+          {localStorage.getItem("token") ? (
+            <div>
+              <IconButton color="inherit">
+                <Badge badgeContent={0} color="error">
+                  <NotificationsIcon
+                    style={{ width: "30px", height: "30px" }}
+                  />
+                </Badge>
+              </IconButton>
+              <IconButton
+                edge="end"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+                style={{ width: "80px", height: "80px" }}
+              >
+                <AccountCircle style={{ width: "30px", height: "30px" }} />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem
+                  onClick={handleClose}
+                  component={NavLink}
+                  to="/profile"
+                >
+                  Perfil
+                </MenuItem>
+                <MenuItem onClick={handleCombinedLogOut}>
+                  Cerrar sesion
+                </MenuItem>
+              </Menu>
+            </div>
+          ) : (
+            <> </>
+          )}
         </Toolbar>
       </AppBar>
       <StyledDrawer
@@ -204,8 +205,12 @@ function Header() {
         onClose={toggleDrawer(false)}
       >
         <List>
-          
-          <ListItem onClick={toggleDrawer(false)} button component={NavLink} to="/">
+          <ListItem
+            onClick={toggleDrawer(false)}
+            button
+            component={NavLink}
+            to="/"
+          >
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
@@ -213,7 +218,12 @@ function Header() {
               <ListItemText primary="Home" />{" "}
             </Link>
           </ListItem>
-          <ListItem onClick={toggleDrawer(false)} button component={NavLink} to="/events">
+          <ListItem
+            onClick={toggleDrawer(false)}
+            button
+            component={NavLink}
+            to="/events"
+          >
             <ListItemIcon>
               <DescriptionIcon />
             </ListItemIcon>
@@ -221,7 +231,12 @@ function Header() {
               <ListItemText primary="Descubrir eventos" />{" "}
             </Link>
           </ListItem>
-          <ListItem onClick={toggleDrawer(false)} button component={NavLink} to="/create">
+          <ListItem
+            onClick={toggleDrawer(false)}
+            button
+            component={NavLink}
+            to="/create"
+          >
             <ListItemIcon>
               <AddCircleIcon />
             </ListItemIcon>
@@ -244,12 +259,18 @@ function Header() {
               <ListItemText primary="Acerca de" />
             </Link>
           </ListItem>
-          <ListItem onClick={toggleDrawer(false)} button component={NavLink} to="/contact">
+          <ListItem
+            onClick={toggleDrawer(false)}
+            button
+            component={NavLink}
+            to="/contact"
+          >
             <ListItemIcon>
               <ContactMailIcon />
             </ListItemIcon>
             <Link onClick={toggleDrawer(false)} to="/contact">
-            <ListItemText primary="Contacto" /></Link>
+              <ListItemText primary="Contacto" />
+            </Link>
           </ListItem>
           <ListItem button>
             <ListItemIcon>
@@ -260,30 +281,41 @@ function Header() {
         </List>
         <Divider />
         <List>
-        {!localStorage.getItem('token') ? (
-          <>
-          <ListItem onClick={handleCombinedClick} button component={NavLink} to="/sign">
-            <ListItemIcon>
-              <HowToRegIcon />
-            </ListItemIcon>
-            <Link to="/sign">
-            <ListItemText primary="Registrarse" /></Link>
-          </ListItem>
-          <ListItem onClick={handleCombinedClick} button component={NavLink} to="/sign">
-            <ListItemIcon>
-              <LoginIcon />
-            </ListItemIcon>
-            
-            <ListItemText primary="Iniciar sesion" />
-          </ListItem>
-          </>
-        ) : (
-          <ListItem onClick={handleLogout} button component={NavLink} to="/">
-            <ListItemIcon>
-              <ExitToAppIcon />
-            </ListItemIcon>
-            <ListItemText primary="Cerrar Sesion" />
-          </ListItem>
+          {!localStorage.getItem("token") ? (
+            <>
+              <ListItem
+                onClick={handleCombinedClick}
+                button
+                component={NavLink}
+                to="/sign"
+              >
+                <ListItemIcon>
+                  <HowToRegIcon />
+                </ListItemIcon>
+                <Link to="/sign">
+                  <ListItemText primary="Registrarse" />
+                </Link>
+              </ListItem>
+              <ListItem
+                onClick={handleCombinedClick}
+                button
+                component={NavLink}
+                to="/sign"
+              >
+                <ListItemIcon>
+                  <LoginIcon />
+                </ListItemIcon>
+
+                <ListItemText primary="Iniciar sesion" />
+              </ListItem>
+            </>
+          ) : (
+            <ListItem onClick={handleLogout} button component={NavLink} to="/">
+              <ListItemIcon>
+                <ExitToAppIcon />
+              </ListItemIcon>
+              <ListItemText primary="Cerrar Sesion" />
+            </ListItem>
           )}
         </List>
       </StyledDrawer>
