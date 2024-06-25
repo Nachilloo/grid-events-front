@@ -97,8 +97,11 @@ function Profile() {
           </CardContent>
         </EventCard>
         ))}
+     </Container>
     </Container>
-  );
+  )
 }
+
+
 
 export default Profile;
