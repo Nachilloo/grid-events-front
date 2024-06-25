@@ -15,12 +15,30 @@ function EventCard({ event }) {
   const [favorited, setFavorited] = useState(false);
   const [loading, setLoading] = useState(false);
 
+
+    const handleFavoriteClick = async () => {
+        setLoading(true);
+        try {
+            if (favorited) {
+                await unfavoriteEvent(event.id);
+            } else {
+                await favoriteEvent(event.id);
+            }
+            setFavorited(!favorited);
+        } catch (error) {
+            console.error("Error updating favorite status", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
   // Función para guardar el estado de favoritos en localStorage
   const saveFavoriteStatus = (eventId, status) => {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || {};
     favorites[eventId] = status;
     localStorage.setItem("favorites", JSON.stringify(favorites));
   };
+
 
   // Función para cargar el estado de favoritos desde localStorage
   const loadFavoriteStatus = (eventId) => {

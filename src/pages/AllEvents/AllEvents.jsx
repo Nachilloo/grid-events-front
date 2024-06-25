@@ -26,6 +26,7 @@ const ImageSection = styled(Box)(({ theme }) => ({
 const AllEvents = () => {
   return (
     <Container maxWidth="lg" sx={{ pt: 2, pb: 2 }}>
+      
       <ImageSection>
         <Typography
           variant="h2"
@@ -50,6 +51,7 @@ const AllEvents = () => {
       </ImageSection>
       <EventsPage />
       <div className="CardTotal">
+
         <CardEvent />
       </div>
       
@@ -59,7 +61,7 @@ const AllEvents = () => {
       <OrganizerList />
       
         
-        
+  
     </Container>
   );
 }
