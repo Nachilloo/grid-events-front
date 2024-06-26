@@ -4,13 +4,11 @@ import EventsPage from "../../components/EventsPage";
 import { Container, Typography, Box } from '@mui/material';
 import { styled } from '@mui/system';
 import OrganizerList from "../AllEvents/OrganizerList";
-import localImage from "../../assets/fondoalleventsconlogo.png"
 import { fetchEvents } from '../../services/eventsService'
-
 
 const ImageSection = styled(Box)(({ theme }) => ({
   height: '40vh',
-  background: `url(${localImage}) no-repeat center center`,
+  background: `url('https://i0.wp.com/quehacerlaspalmas.com/wp-content/uploads/2024/05/fuegos-las-canteras.jpg?resize=799%2C533&ssl=1') no-repeat center center`,
   backgroundSize: 'cover',
   borderRadius: '4%',
   display: 'flex',
@@ -46,11 +44,14 @@ const AllEvents = () => {
 
   return (
     <Container maxWidth="lg" sx={{ pt: 2, pb: 2 }}>
+      
       <ImageSection>
         <Typography
           variant="h2"
-          sx={{ m: 2, fontSize: { xs: "4rem", md: "6rem" } }}
-        ></Typography>
+          sx={{ m: 2, fontSize: { xs: "2rem", md: "3rem" } }}
+        >
+          Los mejores eventos del mundo
+        </Typography>
         <Typography
           variant="h6"
           sx={{
@@ -58,34 +59,29 @@ const AllEvents = () => {
             m: 4,
             fontSize: { xs: "1rem", md: "1.25rem" },
           }}
-        ></Typography>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <h3>Tu entrada a la diversión: eventos únicos, recuerdos eternos</h3>
+        >
+          Encuentra los mejores planes para hacer en el mundo esta semana y
+          descubre todas las novedades con GridEvents. No te pierdas ninguno de
+          los planes que este fin de semana en cualquier lugar. Todos los
+          conciertos, exposiciones.
+        </Typography>
+
       </ImageSection>
       <EventsPage 
       state ={filteredEvents}
       setter ={setFilteredEvents}/>
       <div className="CardTotal">
-
-        <CardEvent />
-
         <CardEvent
         events= {events.filter ( event => (event.title.toLowerCase().includes(filteredEvents.toLowerCase())))} />
-
       </div>
-
+      
       <Typography variant="h4" align="center" gutterBottom marginTop={"50px"}>
         Organizadores Destacados
       </Typography>
       <OrganizerList />
+      
+        
+  
     </Container>
   );
 }

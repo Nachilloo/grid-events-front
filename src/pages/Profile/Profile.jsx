@@ -112,6 +112,6 @@ function Profile() {
       </Container>
     </Container>
   );
-};
+}
 
 export default Profile;
