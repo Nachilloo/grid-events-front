@@ -195,6 +195,7 @@ function Header() {
         onClose={toggleDrawer(false)}
       >
         <List>
+          
           <ListItem
             onClick={toggleDrawer(false)}
             button
@@ -221,6 +222,8 @@ function Header() {
               <ListItemText primary="Descubrir eventos" />{" "}
             </Link>
           </ListItem>
+          {localStorage.getItem("token") ? (
+            <div> 
           <ListItem
             onClick={toggleDrawer(false)}
             button
@@ -232,6 +235,11 @@ function Header() {
             </ListItemIcon>
             <ListItemText primary="Crear eventos" />
           </ListItem>
+          </div>
+          ) : (
+            <> </>
+          )}
+          
           {/* <ListItem button>
             <ListItemIcon>
               <DescriptionIcon />
@@ -273,6 +281,7 @@ function Header() {
         <List>
           {!localStorage.getItem("token") ? (
             <>
+            
               <ListItem
                 onClick={handleCombinedClick}
                 button
