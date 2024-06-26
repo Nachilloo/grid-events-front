@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Container,
   Grid,
@@ -6,17 +5,11 @@ import {
   Card,
   CardContent,
   CardMedia,
-  Box,
-  Button,
-  TextField,
   CssBaseline,
   ThemeProvider,
   createTheme,
-  Avatar,
   Paper,
 } from "@mui/material";
-import { Flex } from "antd";
-import { display, flexbox } from "@mui/system";
 import "./About.css";
 
 const theme = createTheme({

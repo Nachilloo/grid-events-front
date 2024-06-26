@@ -1,14 +1,14 @@
 
 .historia{
     display: flex;
-        flex-direction: column;
-            flex-wrap: nowrap;
-        align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
 }
 
 
 .nuestraMision{
-display: flex;
+    display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;

@@ -32,47 +32,32 @@ const organizers = [
   {
     name: "John Doe",
     role: "Event Coordinator",
-    image: "https://via.placeholder.com/150",
+    image: "./src/assets/Organizer1.png",
   },
   {
-    name: "Jane Smith",
+    name: "Pedro Rodriguez",
     role: "Marketing Manager",
-    image: "https://via.placeholder.com/150",
+    image: "./src/assets/Organizer2.png",
   },
   {
     name: "Alice Johnson",
     role: "Technical Lead",
-    image: "https://via.placeholder.com/150",
+    image: "./src/assets/Organizer3.png",
   },
   {
-    name: "Mike Brown",
+    name: "Lili Brown",
     role: "HR Specialist",
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    name: "Sarah Wilson",
-    role: "Product Manager",
-    image: "https://via.placeholder.com/150",
+    image: "./src/assets/Organizer4.png",
   },
   {
     name: "David Lee",
+    role: "Product Manager",
+    image: "./src/assets/Organizer5.png",
+  },
+  {
+    name: "Sarah Wilson",
     role: "Sales Executive",
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    name: "Emma Davis",
-    role: "Finance Advisor",
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    name: "Chris Green",
-    role: "Support Engineer",
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    name: "Chris Green",
-    role: "Support Engineer",
-    image: "https://via.placeholder.com/150",
+    image: "./src/assets/Organizer6.png",
   },
 ];
 
