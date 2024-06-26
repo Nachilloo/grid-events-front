@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Container, Typography, TextField, Button, Grid, Avatar, Card, CardContent } from '@mui/material';
+import { Container, Typography, TextField, Button, Grid, Card, CardContent } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { updateOneUser } from "../../services/editProfile";
 
