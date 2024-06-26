@@ -57,7 +57,14 @@ function EventCard({ event }) {
   };
 
   return (
-    <Card>
+    <Card 
+    sx={{
+        transition: 'transform 0.3s, box-shadow 0.3s',
+        '&:hover': {
+            transform: 'translateY(-10px)',
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+        },
+    }}>
       <Box position="relative">
         <CardMedia
           component="img"
@@ -66,11 +73,24 @@ function EventCard({ event }) {
           image={event.imgProfile || "default-image-url.jpg"}
           title={event.title}
         />
-        <CardContent>
+        <CardContent 
+        sx={{
+            height: '230px', 
+            overflow: 'hidden',
+        }}>
           <Typography gutterBottom variant="h6" component="div">
             {event.title}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography 
+          variant="body2"
+          color="text.secondary"
+          sx={{
+              display: '-webkit-box',
+              WebkitBoxOrient: 'vertical',
+              WebkitLineClamp: 3,
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+          }}>
             {event.description}
           </Typography>
           <Typography variant="body2">
