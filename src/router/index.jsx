@@ -11,6 +11,7 @@ import CreateEvent from "../pages/CreateEvent/CreateEvent";
 import EditEventPage from "../pages/Event/EditEventPage"
 import EventDetailPage from "../pages/Event/EventDetailPage";
 import GatewayPayment from "../components/GatewayPayment";
+import EditProfile from "../pages/Profile/EditProfile";
 
 const router = createBrowserRouter([
   {
@@ -80,6 +81,10 @@ const router = createBrowserRouter([
           }
         },
         element: <Profile />,
+      },
+      {
+        path: "/editprofile",
+        element: <EditProfile />,
       },
     ],
   },
