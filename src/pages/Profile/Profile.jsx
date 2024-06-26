@@ -55,7 +55,7 @@ function Profile() {
     <Typography variant="h4" gutterBottom>
       Perfil de {userProfile.firstname}
     </Typography>
-    <Card style={{ marginBottom: '20px' }}>
+    <Card style={{ marginBottom: '30px' }}>
       <CardContent style={{ display: 'flex', alignItems: 'center' }}>
         <Avatar
           alt={userProfile.firstname}
@@ -74,25 +74,40 @@ function Profile() {
         </div>
       </CardContent>
     </Card>
-    <Container
-      maxWidth="lg"
-      style={{ paddingTop: "2rem", paddingBottom: "2rem" }}
-    >
+    <Container maxWidth="sm" sx={{ pt: 8, pb: 8 }}>
       <Typography variant="h6">Mis Eventos Favoritos</Typography>
       {userProfile.events && userProfile.events.map(event => (
           <EventCard key={event.id}> {/* Assign a unique key to each EventCard */}
           <CardMedia
-            component="img"
-            height="350"
-            image={event.imgProfile}
-            alt={event.title}
-          />
-          <CardContent>
+      component="img"
+      alt={event.title}
+      sx={{
+        height: 'auto', 
+        width: '100%',
+        objectFit: 'cover',
+      }}
+      image={event.imgProfile || "default-image-url.jpg"}
+      title={event.title}
+    />
+          <CardContent
+          sx={{
+            height: '130px', 
+            overflow: 'hidden',
+        }}>
             <Typography variant="h5" component="div">
               {event.title}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {event.date}
+            <Typography 
+            variant="body2"
+            color="text.secondary"
+            sx={{
+                display: '-webkit-box',
+                WebkitBoxOrient: 'vertical',
+                WebkitLineClamp: 3,
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+            }}>
+              {event.description}
             </Typography>
           </CardContent>
         </EventCard>

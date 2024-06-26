@@ -8,7 +8,6 @@
 }
 
 .CardTotal:hover {
-    transform: scale(1.02);
     box-shadow: 0 12px 24px rgba(14, 20, 134, 0.2);
 }
 
@@ -17,6 +16,9 @@
     display: flex;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+.Card-Event:hover {
+    transform: scale(1.02);
 }
 
 @media (hover: none) {
