@@ -131,8 +131,7 @@ function Header() {
           <img
             src="./src/assets/grid-logo-navbar.png"
             alt="grid logo navbar"
-            width="140"
-            height="50"
+            style={{ height: 50, marginRight: 20 }}
           ></img>
           <Typography variant="subtitle1" sx={{ flexGrow: 1 }}>
           </Typography>
