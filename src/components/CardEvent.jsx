@@ -1,30 +1,30 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import { Grid, Container } from '@mui/material';
 import EventCard from './EventCardGrid';
 import { Link } from 'react-router-dom';
-import { fetchEvents } from '../services/eventsService.js'
+// import { fetchEvents } from '../services/eventsService.js'
 
-function EventsList() {
-    const [events, setEvents] = useState([]);
-    const [error, setError] = useState(null);
+function EventsList({events}) {
+    // const [events, setEvents] = useState([]);
+    // const [error, setError] = useState(null);
 
-    useEffect(() => {
-        async function getEvents() {
-            try {
-                const eventsData = await fetchEvents();
-                setEvents(eventsData);
-            } catch (error) {
-                setError(error.message);
-            }
-        }
+    // useEffect(() => {
+    //     async function getEvents() {
+    //         try {
+    //             const eventsData = await fetchEvents();
+    //             setEvents(eventsData);
+    //         } catch (error) {
+    //             setError(error.message);
+    //         }
+    //     }
 
-        getEvents();
-    }, []);
+    //     getEvents();
+    // }, []);
 
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
-
+    // if (error) {
+    //     return <div>Error: {error}</div>;
+    // }
+   
     return (
         <Container sx={{ py: 8 }} maxWidth="lg">
             <Grid container spacing={4}>

@@ -1,56 +1,63 @@
-
 import { Box, Grid, Container, Typography, Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 function Footer() {
   const elements = [
     {
       header: "Centro de recursos",
-      links: ["Empleo", "Privacidad", "Terminos"],
+      links: ["Privacidad", "Terminos"],
+      paths: ["/about", "/about"], // Rutas correspondientes a Privacidad y Términos
     },
     {
       header: "Cuenta",
-      links: ["Ingresar", "Registrar"],
+      links: ["Ingresar", "Registrarse"],
+      paths: ["/sign", "/sign"], // Rutas correspondientes a Ingresar y Registrarse
     },
     {
       header: "Contacta con nosotros",
       links: ["Contacto"],
+      paths: ["/contact"], // Ruta correspondiente a Contacto
     },
   ];
 
   function generateFooterElements() {
-    const footerElements = elements.map((column, index) => ( // Added index as key
+    const footerElements = elements.map((column, index) => (
       <Grid item key={index} xs={12} md={4}>
-        <Box key={column.header} borderBottom={1}> {/* Using column.header as key */}
-          <Button sx={{ color: "white", fontWeight: "bold" }}>
+        <Box  pb={2} mb={2}>
+          <Typography
+            variant="h6"
+            sx={{ color: "white", fontWeight: "bold" }}
+            borderBottom={1}
+          >
             {column.header}
-          </Button>
-        </Box>
-        {column.links.map((link, idx) => ( // Added idx as key
-          <Box key={idx}>
-            <Button sx={{ color: "white" }}>{link}</Button>
+          </Typography>
+          <Box mt={1}>
+            {column.links.map((link, idx) => (
+              <Button
+                key={idx}
+                component={Link}
+                to={column.paths[idx]}
+                sx={{ color: "white" }}
+              >
+                {link}
+              </Button>
+            ))}
           </Box>
-        ))}
+        </Box>
       </Grid>
     ));
-  
+
     return footerElements;
   }
-  
 
   return (
     <footer>
-      <Box bgcolor="#123456" color="white" padding={2}>
+      <Box bgcolor="#123456" color="white" py={4}>
         <Container>
-          <Grid container columnSpacing={2}>
+          <Grid container spacing={2}>
             {generateFooterElements()}
           </Grid>
-          <Box
-            textAlign={"center"}
-            py={2}
-            m={0}
-            bgcolor="123456"
-            color={"white"}
-          >
+          <Box textAlign="center"  bgcolor="#123456" color="white">
             <Typography variant="h6">
               © Grid Events 2024 - All Rights Reserved
             </Typography>
