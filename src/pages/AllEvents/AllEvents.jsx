@@ -1,8 +1,10 @@
+import { useEffect, useState } from 'react';
 import CardEvent from "../../components/CardEvent";
 import EventsPage from "../../components/EventsPage";
 import { Container, Typography, Box } from '@mui/material';
 import { styled } from '@mui/system';
 import OrganizerList from "../AllEvents/OrganizerList";
+import { fetchEvents } from '../../services/eventsService'
 
 const ImageSection = styled(Box)(({ theme }) => ({
   height: '40vh',
@@ -24,6 +26,22 @@ const ImageSection = styled(Box)(({ theme }) => ({
 }));
 
 const AllEvents = () => {
+    const [events, setEvents] = useState([]);
+    const [error, setError] = useState(null);
+    const [filteredEvents, setFilteredEvents] = useState('');
+   useEffect(() => {
+    async function getEvents() {
+        try {
+            const eventsData = await fetchEvents();
+            setEvents(eventsData);
+        } catch (error) {
+            setError(error.message);
+        }
+    }
+
+    getEvents();
+}, []);
+
   return (
     <Container maxWidth="lg" sx={{ pt: 2, pb: 2 }}>
       
@@ -49,10 +67,12 @@ const AllEvents = () => {
         </Typography>
 
       </ImageSection>
-      <EventsPage />
+      <EventsPage 
+      state ={filteredEvents}
+      setter ={setFilteredEvents}/>
       <div className="CardTotal">
-
-        <CardEvent />
+        <CardEvent
+        events= {events.filter ( event => (event.title.toLowerCase().includes(filteredEvents.toLowerCase())))} />
       </div>
       
       <Typography variant="h4" align="center" gutterBottom marginTop={"50px"}>
