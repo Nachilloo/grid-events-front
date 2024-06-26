@@ -32,8 +32,20 @@ const Home = () => {
         alignItems: "center",
       }}
     >
+      <Typography variant="h2" component="h1" gutterBottom>
+        Haz lo que te apasione
+      </Typography>
+      <Typography variant="body1">
+        Aquí puedes encontrar la mejor información sobre nuestros eventos.
+        Navega a través de las imágenes para saber más.
+      </Typography>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={8}>
+        <Grid
+          item
+          xs={12}
+          md={80}
+          style={{ padding: "20px", textAlign: "center" }}
+        >
           <Carousel>
             {items.map((item, index) => (
               <Paper
@@ -60,15 +72,9 @@ const Home = () => {
         </Grid>
 
         <Grid item xs={12} md={4}>
-          <Box sx={{ margin: { xs: "10% 0", md: "18%" }, textAlign: "center" }}>
-            <Typography variant="h3" component="h1" gutterBottom>
-              Haz lo que te apasione
-            </Typography>
-            <Typography variant="body1">
-              Aquí puedes encontrar la mejor información sobre nuestros eventos.
-              Navega a través de las imágenes para saber más.
-            </Typography>
-          </Box>
+          <Box
+            sx={{ margin: { xs: "10% 0", md: "18%" }, textAlign: "center" }}
+          ></Box>
         </Grid>
       </Grid>
 
