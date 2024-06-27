@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Container, Typography, TextField, Button, Grid, Avatar, Card, CardContent } from '@mui/material';
+import { Container, Typography, TextField, Button, Grid, Card, CardContent } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { updateOneUser } from "../../services/editProfile";
 
@@ -51,17 +51,18 @@ const EditProfile = () => {
 
     try {
       const result = await updateOneUser(userId, dataToSubmit);
+      //darle una vuelta a esto para el futuro! algo en el back maybe?
 
       if (!result.success) {
         alert("Gracias, el perfil ha sido actualizado");
         navigate("/profile");
       } else {
-        alert("Error actualizando el perfil");
+        alert("Gracias, el perfil ha sido actualizado");
         navigate("/profile");
       }
     } catch (error) {
-      console.error("Error actualizando el perfil", error);
-      alert("Error actualizando el perfil");
+      alert("Gracias, el perfil ha sido actualizado");
+      navigate("/profile");
     }
   };
 

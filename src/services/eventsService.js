@@ -28,4 +28,27 @@ const unfavoriteEvent = async (eventId) => {
     }
 };
 
-export { fetchEvents, favoriteEvent, unfavoriteEvent };
+const fetchEventById = async (eventId) => {
+    try {
+      const { data } = await api.get(`event/${eventId}`);
+      return data.result;
+    } catch (error) {
+      console.error('Error fetching event by ID:', error);
+      throw error;
+    }
+  };
+  
+  const updateEvent = async (eventId, eventData) => {
+    try {
+      const { data } = await api.put(`event/${eventId}`, eventData);
+      return data.result;
+    } catch (error) {
+      console.error('Error updating event:', error);
+      throw error;
+    }
+  };
+
+
+
+
+export { fetchEvents, favoriteEvent, unfavoriteEvent, updateEvent, fetchEventById };
