@@ -43,7 +43,7 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
       {
-        path: "/editevent",
+        path: "/editevent/:eventId",
         element: <EditEventPage />,
       },
       {

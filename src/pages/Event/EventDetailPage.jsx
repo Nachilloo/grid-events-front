@@ -12,6 +12,7 @@ import {
   IconButton,
   useMediaQuery,
   Button,
+  Link,
   Paper,
   useTheme,
 } from "@mui/material";
@@ -105,43 +106,53 @@ const EventDetailPage = () => {
       }));
       
     return (
-        <Container
-          maxWidth="md"
-          style={{ paddingTop: "2rem", paddingBottom: "2rem" }}
-        >
-          <EventCard>
-            <CardMedia
-              component="img"
-              height="400"
-              image={event.result.imgProfile}
-              alt={event.result.title}
-            />
-            <CardContent>
-              <Typography variant="h3" component="div" gutterBottom>
-                {event.result.title}
-              </Typography>
-              <Typography variant="body1" color="text.secondary" paragraph>
-                {event.result.description}
-              </Typography>
-              <Typography variant="body2" color="text.secondary" paragraph>
-                <strong>Fecha:</strong> {new Date(event.result.date).toLocaleDateString()}
-              </Typography>
-              <Typography variant="body2" color="text.secondary" paragraph>
-                <strong>Localizacion:</strong> {event.result.location}
-              </Typography>
-              <Typography variant="body2" color="text.secondary" paragraph>
-                <strong>Acerca del evento:</strong> {event.result.about}
-              </Typography>
-              <Typography variant="body2" color="text.secondary" paragraph>
-                <strong>Cantidad de asistentes:</strong> {event.result.maxTickets}
-              </Typography>
-              <Typography variant="h5" color="primary" paragraph>
-                <strong>Precio de la entrada:</strong> €{event.result.price}
-              </Typography>
-            </CardContent>
-          </EventCard>
-          <CartContainer >
-          <Typography variant="h6" component="div" gutterBottom>   
+      <Container
+      maxWidth="md"
+      style={{ paddingTop: "2rem", paddingBottom: "2rem" }}
+    >
+      <EventCard>
+        <CardMedia
+          component="img"
+          height="400"
+          image={event.result.imgProfile}
+          alt={event.result.title}
+        />
+        <CardContent>
+          <Typography variant="h3" component="div" gutterBottom>
+            {event.result.title}
+          </Typography>
+          <Typography variant="body1" color="text.secondary" paragraph>
+            {event.result.description}
+          </Typography>
+          <Typography variant="body2" color="text.secondary" paragraph>
+            <strong>Fecha:</strong> {new Date(event.result.date).toLocaleDateString()}
+          </Typography>
+          <Typography variant="body2" color="text.secondary" paragraph>
+            <strong>Localizacion:</strong> {event.result.location}
+          </Typography>
+          <Typography variant="body2" color="text.secondary" paragraph>
+            <strong>Acerca del evento:</strong> {event.result.about}
+          </Typography>
+          <Typography variant="body2" color="text.secondary" paragraph>
+            <strong>Cantidad de asistentes:</strong> {event.result.maxTickets}
+          </Typography>
+          <Typography variant="h5" color="primary" paragraph>
+            <strong>Precio de la entrada:</strong> €{event.result.price}
+          </Typography>
+          <Box display="flex" justifyContent="flex-end">
+            <Button 
+              variant="contained" 
+              color="primary" 
+              component={Link}
+              to={`/editevent/${eventId}`}
+            >
+              Editar Evento
+            </Button>
+          </Box>
+        </CardContent>
+      </EventCard>
+      <CartContainer>
+        <Typography variant="h6" component="div" gutterBottom>   
           <ShoppingCartIcon /> Mi Carrito
         </Typography>
         <Box display="flex" alignItems="center" justifyContent="center" marginTop={2}>
@@ -166,8 +177,8 @@ const EventDetailPage = () => {
         >
           Comprar entradas
         </StyledButton>
-        </CartContainer>
-        </Container>
+      </CartContainer>
+    </Container>
         
       );
 }  
