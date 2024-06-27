@@ -129,12 +129,11 @@ function Header() {
             <MenuIcon />
           </IconButton>
           <img
-            src="./src/assets/grid-logo-navbar.png"
+            src="src\assets\grid-logo-navbar.png"
             alt="grid logo navbar"
             style={{ height: 50, marginRight: 20 }}
           ></img>
-          <Typography variant="subtitle1" sx={{ flexGrow: 1 }}>
-          </Typography>
+          <Typography variant="subtitle1" sx={{ flexGrow: 1 }}></Typography>
 
           {localStorage.getItem("token") ? (
             <div>
@@ -194,7 +193,6 @@ function Header() {
         onClose={toggleDrawer(false)}
       >
         <List>
-          
           <ListItem
             onClick={toggleDrawer(false)}
             button
@@ -222,23 +220,23 @@ function Header() {
             </Link>
           </ListItem>
           {localStorage.getItem("token") ? (
-            <div> 
-          <ListItem
-            onClick={toggleDrawer(false)}
-            button
-            component={NavLink}
-            to="/create"
-          >
-            <ListItemIcon>
-              <AddCircleIcon />
-            </ListItemIcon>
-            <ListItemText primary="Crear eventos" />
-          </ListItem>
-          </div>
+            <div>
+              <ListItem
+                onClick={toggleDrawer(false)}
+                button
+                component={NavLink}
+                to="/create"
+              >
+                <ListItemIcon>
+                  <AddCircleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Crear eventos" />
+              </ListItem>
+            </div>
           ) : (
             <> </>
           )}
-          
+
           {/* <ListItem button>
             <ListItemIcon>
               <DescriptionIcon />
@@ -280,7 +278,6 @@ function Header() {
         <List>
           {!localStorage.getItem("token") ? (
             <>
-            
               <ListItem
                 onClick={handleCombinedClick}
                 button
