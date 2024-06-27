@@ -4,6 +4,7 @@ import { Container, Button, Typography, Grid, Card, CardContent, CircularProgres
 import { styled } from "@mui/system";
 import { useNavigate } from 'react-router-dom';
 
+
 function Profile() {
   const [userProfile, setUserProfile] = useState(null);
   const [error, setError] = useState(null);
@@ -69,6 +70,7 @@ function Profile() {
           />
         <div style={{ flexGrow: 1 }}>
             <Typography variant="h5">Información del Usuario</Typography>
+
             <Typography variant="body1"><strong>Nombre:</strong> {userProfile.firstname}</Typography>
             <Typography variant="body1"><strong>Apellido:</strong> {userProfile.lastname}</Typography>
             <Typography variant="body1"><strong>Email:</strong> {userProfile.email}</Typography>

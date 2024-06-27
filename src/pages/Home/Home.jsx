@@ -8,7 +8,7 @@ import CardEvent2 from "../../components/CardEvent2";
 const items = [
   {
     name: "Cumpleaños",
-    img: "https://img.freepik.com/foto-gratis/pista-baile-energica-gente-celebrando-su-cumpleanos_1268-30650.jpg?w=826&t=st=1718735235~exp=1718735835~hmac=82c34fbc4431a39b72661412f9211ba9f5110861d93bedd3c935a0d0e2473da0",
+    img: "https://www.elementalproduction.com/wp-content/uploads/2021/05/corporate-events.jpg",
   },
   {
     name: "Reuniones de trabajo",
@@ -57,8 +57,8 @@ const Home = () => {
                   src={item.img}
                   alt={item.name}
                   sx={{
-                    width: { xs: "100%", md: "800px" },
-                    height: { xs: "auto", md: "400px" },
+                    width: { xs: "100%", md: "1000px" },
+                    height: { xs: "auto", md: "600px" },
                     maxHeight: { xs: 200, md: 400 },
                   }}
                 />
