@@ -41,20 +41,27 @@ const EditProfile = () => {
 
   const handleOnSubmit = async (event) => {
     event.preventDefault();
-    
+
     if (!userId) {
       console.error("No user ID found");
       return;
     }
 
-    const result = await updateOneUser(userId, formData);
+    const { imgProfile, ...dataToSubmit } = formData;
 
-    if (result.success) {
-      alert("Gracias, el perfil ha sido actualizado");
-      navigate("/profile");
-    } else {
-      alert("Perfil actualizado")
-      navigate("/profile")
+    try {
+      const result = await updateOneUser(userId, dataToSubmit);
+
+      if (!result.success) {
+        alert("Gracias, el perfil ha sido actualizado");
+        navigate("/profile");
+      } else {
+        alert("Error actualizando el perfil");
+        navigate("/profile");
+      }
+    } catch (error) {
+      console.error("Error actualizando el perfil", error);
+      alert("Error actualizando el perfil");
     }
   };
 
