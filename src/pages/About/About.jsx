@@ -64,25 +64,25 @@ const teamMembers = [
     name: "Gabriel Benitez",
     title: "Desarrollador Frontend",
     bio: "Experto en React y diseño de interfaces.",
-    image: "./src/assets/photo5.jpg",
+    image: "./photo5.jpg",
   },
   {
     name: "Romina Rodriguez",
     title: "Event Manager",
     bio: "Experta en la planificación y ejecución de eventos.",
-    image: "./src/assets/photo1.jpg",
+    image: "./photo1.jpg",
   },
   {
     name: "Ignacio Galante",
     title: "Desarrollador Backend",
     bio: "Especialista en Node.js y bases de datos",
-    image: "./src/assets/photo2.jpg",
+    image: "./photo2.jpg",
   },
   {
     name: "Diego Lozada ",
     title: "Diseñador Gráfico",
     bio: "Creativo en UX/UI y branding visual",
-    image: "./src/assets/photo3.avif",
+    image: "./photo3.avif",
   },
 ];
 
@@ -127,7 +127,7 @@ const About = () => {
               </Typography>
               <img
                 className="imagenHistoria"
-                src="./src/assets/aboutus.png"
+                src="./aboutus.png"
                 width="50%"
                 height="50%"
               ></img>
@@ -164,7 +164,7 @@ const About = () => {
           <Typography variant="h4" gutterBottom>
             Nuestra Misión
           </Typography>
-          <img src="./src/assets/mision.png" width="50%" height="50%"></img>
+          <img src="./mision.png" width="50%" height="50%"></img>
           <Typography
             variant="body1"
             paragraph
