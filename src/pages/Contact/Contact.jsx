@@ -35,9 +35,9 @@ function Contact() {
   return (
     <section className="contact">
       <form className="form" onSubmit={onSubmit}>
-        <h2>Contáctanos</h2>
+        <h2 className='contactName'>Contáctanos</h2>
         <div className="input-box">
-          <label> Nombre Completo </label>
+          <label>Nombre Completo</label>
           <input type="text" className="field" placeholder="Escribe tu nombre" name='name' required/>
         </div>
         <div className="input-box">
@@ -45,11 +45,10 @@ function Contact() {
           <input type="email" className="field" placeholder="Escribe tu email" name='email' required/>
         </div>
         <div className="input-box">
-          <label> Mensaje </label>
-          <textarea name="message" id="" className="field mess" placeholder ="Escribe tu mensaje" required ></textarea>
+          <label>Mensaje</label>
+          <textarea name="message" id="" className="field mess" placeholder='Escribe tu mensaje' required></textarea>
         </div>
         <button className="button" type="submit"> Enviar mensaje </button>
-
       </form>
     </section>
    

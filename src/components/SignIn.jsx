@@ -20,14 +20,13 @@ function SignInForm() {
       email,
       password,
     };
-    console.log(formData)
     const result = await login(formData);
-    //navigate("/profile");
+    navigate("/profile");
   };
 
   return (
     <div className="form-container sign-in-container">
-      <form onSubmit={handleSubmit} className="formSign">
+      <form className="formSign">
         <h1>Sign in</h1>
 
         <input
@@ -45,7 +44,7 @@ function SignInForm() {
           onChange={handlePassword}
         />
         <a href="#">Olvidastes tu contraseña?</a>
-        <button onClick={handleSubmit} className="button">
+        <button type="button" onClick={handleSubmit} className="button">
           Sign In
         </button>
       </form>

@@ -1,0 +1,12 @@
+.CardTotal {
+    background-color: #fff;
+    border-radius: 20px;
+    /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 300px;
+    /* Ancho fijo */
+    height: 300px;
+}
+
