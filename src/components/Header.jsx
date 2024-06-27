@@ -129,7 +129,7 @@ function Header() {
             <MenuIcon />
           </IconButton>
           <img
-            src="..\assets\grid-logo-navbar.png"
+            src="\src\assets\grid-logo-navbar.png"
             alt="grid logo navbar"
             style={{ height: 50, marginRight: 20 }}
           ></img>
