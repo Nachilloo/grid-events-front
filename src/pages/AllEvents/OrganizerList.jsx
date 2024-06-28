@@ -32,32 +32,32 @@ const organizers = [
   {
     name: "John Doe",
     role: "Event Coordinator",
-    image: "./src/assets/Organizer1.png",
+    image: "./Organizer1.png",
   },
   {
     name: "Pedro Rodriguez",
     role: "Marketing Manager",
-    image: "./src/assets/Organizer2.png",
+    image: "./Organizer2.png",
   },
   {
     name: "Alice Johnson",
     role: "Technical Lead",
-    image: "./src/assets/Organizer3.png",
+    image: "./Organizer3.png",
   },
   {
     name: "Lili Brown",
     role: "HR Specialist",
-    image: "./src/assets/Organizer4.png",
+    image: "./Organizer4.png",
   },
   {
     name: "David Lee",
     role: "Product Manager",
-    image: "./src/assets/Organizer5.png",
+    image: "./Organizer5.png",
   },
   {
     name: "Sarah Wilson",
     role: "Sales Executive",
-    image: "./src/assets/Organizer6.png",
+    image: "./Organizer6.png",
   },
 ];
 
